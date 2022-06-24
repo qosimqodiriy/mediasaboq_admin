@@ -1,0 +1,59 @@
+{
+  "links":[
+    {
+      "path": "/",
+      "content": "Kategoriyalar",
+      "icon": "ri-layout-grid-fill"
+    },
+    {
+      "path": "/tags",
+      "content": "Teglar",
+      "icon": "ri-hashtag"
+    },
+    {
+      "path": "/authors",
+      "content": "Mualliflar",
+      "icon": "ri-group-fill"
+    },
+    {
+      "path": "/books",
+      "content": "Kutubxona",
+      "icon": "ri-book-read-fill"
+    },
+    {
+      "path": "/medias",
+      "content": "Media blog",
+      "icon": "ri-play-circle-fill"
+    },
+    {
+      "path": "/educations",
+      "content": "Ta'lim",
+      "icon": "ri-article-fill"
+    },
+    {
+      "path": "/projects",
+      "content": "Media loyihalar",
+      "icon": "ri-pencil-ruler-2-fill"
+    },
+    {
+      "path": "/socials",
+      "content": "Ijtimoiy tarmoqlar",
+      "icon": "ri-links-line"
+    },
+    {
+      "path": "/pages",
+      "content": "Statik sahifalar",
+      "icon": "ri-pages-line"
+    },
+    {
+      "path": "/emails",
+      "content": "Emaillar",
+      "icon": "ri-mail-fill"
+    },
+    {
+      "path": "/settings",
+      "content": "Settings",
+      "icon": "ri-settings-4-fill"
+    }
+  ]
+}
