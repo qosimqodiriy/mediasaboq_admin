@@ -72,27 +72,27 @@ function showError() {
     <div v-if="data.error" class="text-red-primary my-3">
           Iltimos, aloqa suratini joylang!
     </div>
-    <div class="grid grid-cols-2 gap-3.5 mt-4">
+    <div class="grid lg:grid-cols-2 gap-3.5 mt-4">
       <div class="flex items-center justify-between border border-gray-secondary p-3.5 rounded" v-for="item in data.formInfo.contacts">
-      <div class="flex items-center">
-        <BaseImage :src="item.icon" class="h-11 w-11 rounded"/>
-        <a :href="item.contact" class="ml-3.5 text-xl font-medium">{{item.name}}</a>
-      </div>
+        <div class="flex items-center">
+          <BaseImage :src="item.icon" class="h-11 w-11 rounded"/>
+          <a :href="item.contact" class="ml-3.5 text-xl font-medium">{{item.name}}</a>
+        </div>
         <div role="button" class="bg-red-secondary w-11 h-11 flex justify-center items-center rounded-full ml-2.5" @click="removeContact(item)">
-        <i class="ri-delete-bin-6-line text-xl text-red-primary"></i>
-      </div>
-      </div>
-      <form @submit.prevent="addNewContact" class="flex items-center justify-start border border-gray-secondary p-3.5 rounded">
-      <div class="flex items-center">
-        <image-box ref="imageRef" @invalid-input="showError" class="h-11 w-11 border border-gray-secondary rounded bg-gray-primary"/>
-        <div>
-          <input type="text" v-model="contact.name" class="ml-3.5 item-input" placeholder="Nomi" required>
-          <input type="text" v-model="contact.contact" class="ml-3.5 item-input" placeholder="Havola" required>
+          <i class="ri-delete-bin-6-line text-xl text-red-primary"></i>
         </div>
       </div>
-        <button type="submit" role="button" class="bg-gray-secondary w-11 h-11 flex justify-center items-center rounded-full">
-        <i class="ri-add-line text-xl text-black-primary"></i>
-      </button>
+      <form @submit.prevent="addNewContact" class="flex items-center justify-start border border-gray-secondary p-3.5 rounded">
+        <div class="flex items-center w-full">
+          <image-box ref="imageRef" @invalid-input="showError" class="h-11 w-11 border border-gray-secondary rounded bg-gray-primary"/>
+          <div>
+            <input type="text" v-model="contact.name" class="ml-3.5 item-input w-full" placeholder="Nomi" required>
+            <input type="text" v-model="contact.contact" class="ml-3.5 item-input w-full" placeholder="Havola" required>
+          </div>
+        </div>
+        <button type="submit" role="button" class="bg-gray-secondary w-11 h-11 flex justify-center items-center rounded-full shrink-0">
+          <i class="ri-add-line text-xl text-black-primary"></i>
+        </button>
       </form>
     </div>
     <button class="px-8 mt-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">O‘zgarishlarni saqlash</button>

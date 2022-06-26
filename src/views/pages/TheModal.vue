@@ -37,13 +37,13 @@ defineExpose({
         <i @click="data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
       </div>
       <form action="" @submit.prevent="submit" class="w-102">
-      <div class="flex flex-col mb-8">
-        <div class="flex flex-col">
-        <input type="text" v-model="data.footer.uz" class="mt-3.5 input" placeholder="O'zbek tilida" required>
-        <input type="text" v-model="data.footer.eng" class="mt-3.5 input" placeholder="In English" required>
+        <div class="flex flex-col mb-8">
+          <div class="flex flex-col">
+            <input type="text" v-model="data.footer.uz" class="mt-3.5 input" placeholder="O'zbek tilida" required>
+            <input type="text" v-model="data.footer.eng" class="mt-3.5 input" placeholder="In English" required>
+          </div>
         </div>
-      </div>
-      <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">O‘zgarishlarni saqlash</button>
+        <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">O‘zgarishlarni saqlash</button>
       </form>
     </div>
     </div>

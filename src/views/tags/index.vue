@@ -45,7 +45,7 @@ function openModal(val: any) {
 getItems()
 </script>
 <template>
-<div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
+<div class="main bg-gray-primary px-8 md:px-12 lg:px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
   <div class="flex justify-between h-28 items-center">
     <div class="bg-white-primary rounded-3xl">
       <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.lang !== 'eng' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'uz'})">O'zbek tilida</button>

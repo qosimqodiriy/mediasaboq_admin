@@ -9,7 +9,7 @@ const src = ['icon-category', 'icon-book', 'icon-video', 'icon-question', 'icon-
         <h2 class="font-vibes text-3xl text-green-primary">media<span class="text-orange-primary">saboq</span></h2>
       </div>
       <div class="text-sm font-medium pt-8 w-100">
-        <router-link v-for="(link, index) in links.links" :to="link.path" :key="link.path" class="py-3.5 flex" active-class="router-link-active">
+        <router-link v-for="link in links.links" :to="link.path" :key="link.path" class="py-3.5 flex" active-class="router-link-active">
           <i :class="link.icon" class="text-gray-icon"></i>
           <p class="px-2.5 text-sm font-medium">{{link.content}}</p>
         </router-link>

@@ -29,11 +29,11 @@ function openModal(val: any) {
 getItems()
 </script>
 <template>
-<div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
+<div class="main bg-gray-primary px-8 md:px-12 lg:px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
   <div class="flex justify-start h-28 items-center">
     <p class="text-black-primary text-2xl font-bold">Statik sahifalar</p>
   </div>
-  <div class="grid grid-cols-2 gap-8">
+  <div class="grid lg:grid-cols-2 gap-8">
     <div>
       <p class="text-2xl text-black-primary mb-3.5 font-medium">Footer</p>
       <div class="rounded bg-white-primary p-8 relative" @mouseenter="iconActive = !iconActive" @mouseleave="iconActive = !iconActive">
@@ -46,7 +46,7 @@ getItems()
         <p class="mt-3.5">{{items.footer.footer.eng}}</p>
       </div>
     </div>
-      <div>
+    <div>
       <p class="text-2xl text-black-primary mb-3.5 font-medium">About US</p>
       <div class="rounded bg-white-primary p-8 relative" @mouseenter="aboutActive = !aboutActive" @mouseleave="aboutActive = !aboutActive">
         <div class="flex absolute top-3.5 right-3.5 z-10" v-if="aboutActive">

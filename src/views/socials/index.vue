@@ -32,7 +32,7 @@ function openModal(val: any) {
 getItems()
 </script>
 <template>
-<div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
+<div class="main bg-gray-primary px-8 md:px-12 lg:px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
   <div class="flex justify-between h-28 items-center">
     <p class="text-black-primary text-2xl font-bold">Ijtimoiy tarmoqlar</p>
     <div class="flex">
@@ -46,7 +46,7 @@ getItems()
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-3 gap-8">
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
     <social-item v-for="item in items.list" :id="item.id" :icon="item.icon" :url="item.url" :priority="item.priority"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: item.id, text: 'Diqqat, ijtimoiy tarmoqni o‘chirishga aminmisiz?', title: `${item.url}`, url: 'social', callback: getItems })"/>
   </div>
   <the-modal ref="modalRef" @submit="OPEN_LOADING_MODAL" @toast="val => OPEN_NOTIFICATION({text: val, callback: getItems })"/>

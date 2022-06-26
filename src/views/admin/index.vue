@@ -22,7 +22,7 @@ function openModal(val: any) {
 getItems()
 </script>
 <template>
-<div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
+<div class="main bg-gray-primary px-8 md:px-12 lg:px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
   <div class="flex justify-start h-28 items-center">
     <p class="text-3xl text-black-primary font-bold">Sozlamalar</p>
   </div>

@@ -52,9 +52,9 @@ export async function getSelections_API(offset = 0, url: string, search = ''): P
   try {
       const response = await axiosInstance.get(url, {
           params: {
-              size: 10,
-              offset: offset,
-              search: search
+            size: 10,
+            offset: offset,
+            search: search
           }
       })
       return [null, response]
