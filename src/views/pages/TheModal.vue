@@ -14,7 +14,7 @@ const data = reactive<{display: boolean, footer:{uz: string, eng: string}}>({
 function open(item: {footer: {uz: string, eng: string}}) {
   data.display = true
   data.footer = Object.assign({}, item.footer)
-  console.log(item)
+  (item)
 }
 
 async function submit() {

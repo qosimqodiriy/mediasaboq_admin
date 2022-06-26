@@ -49,8 +49,9 @@ const data = reactive<{ formInfo: MediaModel, error: boolean,  displayAuthors: A
 })();
 
 async function assign() {
-  const [error, item] = await getMedia(Number(route.query.item))
-  if (item.id != undefined) {
+  const id = route.query.item
+  if (id != undefined) {
+    const [error, item] = await getMedia(Number(id))
     Object.assign(data.formInfo, item)
     data.formInfo.date = inputDate(item.date)
     data.formInfo.author = item.author.id

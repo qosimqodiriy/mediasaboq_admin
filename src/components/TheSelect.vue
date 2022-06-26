@@ -36,7 +36,6 @@ async function loadSelections() {
         ...data.list,
         ...response.data.list
         ]
-      console.log(data.list)
       data.count = response.data.count
       data.offset = data.offset + 10
       data.searchOffset = 0;

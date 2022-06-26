@@ -35,7 +35,7 @@ async function getItems() {
     CLOSE_LOADING_MODAL()
     items.value.count = response.count
     items.value.list = response.list
-    console.log(response.list)
+    (response.list)
 }
 
 function openModal(val: any) {

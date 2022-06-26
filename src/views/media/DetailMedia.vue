@@ -56,8 +56,9 @@ const data = reactive<{ formInfo: MediaModel, error: boolean, displayCategory: {
 })();
 
 async function assign() {
-  const [error, item] = await getMedia(Number(route.query.item))
-  if (item.id != undefined) {
+  const id = route.query.item
+  if (id != undefined) {
+    const [error, item] = await getMedia(Number(id))
     Object.assign(data.formInfo, item)
     data.formInfo.date = inputDate(item.date)
     data.formInfo.category = item.category.id
@@ -147,15 +148,15 @@ for (let i = 0; i < data.formInfo.suggests.length; i++) {
         <div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.isTop">
-              <span class="slider round" @click="data.formInfo.isTop = !data.formInfo.isTop"></span>
+              <input type="checkbox" :checked="data.formInfo.isTop" @click="data.formInfo.isTop = !data.formInfo.isTop">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Top</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.isMain">
-              <span class="slider round" @click="data.formInfo.isMain = !data.formInfo.isMain"></span>
+              <input type="checkbox" :checked="data.formInfo.isMain" @click="data.formInfo.isMain = !data.formInfo.isMain">
+              <span class="slider round" ></span>
             </label>
             <p class="px-3.5">Asosiy</p>
           </div>

@@ -77,8 +77,10 @@ async function loadSelections() {
   }
 
   async function createNewElement() {
-    emit('select', {name: data.query, lang: props.lang })
     const [error, response] = await postSelections_API({ name: data.query, lang: props.lang }, String(props.url))
+    // oxiirgi qo'shilhgan elementni olish kerak
+    // emit('select', {name: data.query, lang: props.lang })
+    data.query = ''
     data.visible = !data.visible
     }
   onMounted(() => {

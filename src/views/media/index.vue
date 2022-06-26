@@ -32,7 +32,6 @@ async function getItems() {
     CLOSE_LOADING_MODAL()
     items.value.count = response.count
     items.value.list = response.list
-    console.log(response.list)
 }
 
 getItems()
