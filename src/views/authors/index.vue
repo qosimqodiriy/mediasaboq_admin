@@ -35,7 +35,6 @@ async function getItems() {
     CLOSE_LOADING_MODAL()
     items.value.count = response.count
     items.value.list = response.list
-    (response.list)
 }
 
 function openModal(val: any) {
@@ -47,46 +46,48 @@ getItems()
 <div class="main bg-gray-primary px-8 md:px-12 lg:px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
   <div class="flex justify-between h-28 items-center">
     <p class="text-black-primary text-2xl font-bold">Mualliflar</p>
-    <div class="flex">
+    <div class="flex items-center">
       <div class="bg-white-primary flex px-5.5 py-3 rounded w-52 mx-8" role="button">
         <i class="ri-search-line text-black-secondary"></i>
         <input type="search" name="search" v-model="searchInput" @input="getItems" placeholder="Qidiruv" class="placeholder:text-black-200 text-black-200 focus:outline-none text-sm px-2 w-35">
       </div>
-      <button class="bg-orange-primary shadow-lg shadow-black-primary-500/50 flex items-center text-white-primary flex px-5.5 py-3 rounded" role="button" @click="openModal">
+      <button class="bg-orange-primary shadow-lg shadow-black-primary-500/50 items-center text-white-primary flex px-5.5 py-3 rounded" role="button" @click="openModal">
         <i class="ri-add-line"></i>
         <p class="text-sm px-2">Yangi maullif qo‘shish</p>
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-8">
+  <div class="grid lg:grid-cols-2 gap-8 pb-12">
     <div>
+      <p class="text-orange-primary text-lg font-bold pb-2">Active: <span class="font-semibold text-black-primary">true</span></p>
       <table class="bg-white-primary">
-    <thead>
-      <th>ID</th>
-      <th>Ismi sharifi</th>
-      <th>Foydalanuvchi nomi</th>
-      <th>Amal</th>
-    </thead>
-    <tbody>
-      <author-item v-for="item in items.list.slice(0, 5)" :id="Number(item.id)" :username="item.username" :token="item.token" :uuid="item.uuid" :password="item.password" :name="item.name" :isActive="item.isActive" :image="item.image" :description="item.description"  :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, muallifni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'author', callback: getItems })"/>
-    </tbody>
-  </table>
+        <thead>
+          <th>ID</th>
+          <th>Ismi sharifi</th>
+          <th>Foydalanuvchi nomi</th>
+          <th>Amal</th>
+        </thead>
+        <tbody v-for="item in items.list.slice(0, items.count)" :key="item.id">
+          <author-item v-if="item.isActive == true" :id="Number(item.id)" :username="item.username" :token="item.token" :uuid="item.uuid" :password="item.password" :name="item.name" :isActive="item.isActive" :image="item.image" :description="item.description" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, muallifni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'author', callback: getItems })"/>
+        </tbody>
+      </table>
     </div>
     <div>
-        <table class="bg-white-primary" v-if="items.list.length > 5">
-    <thead>
-      <th>ID</th>
-      <th>Ismi sharifi</th>
-      <th>Foydalanuvchi nomi</th>
-      <th>Amal</th>
-    </thead>
-    <tbody>
-      <author-item v-for="item in items.list.slice(5, 10)" :id="Number(item.id)" :name="item.name" :username="item.username" :token="item.token" :uuid="item.uuid" :password="item.password" :isActive="item.isActive" :description="item.description" :image="item.image"  :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, muallifni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'author', callback: getItems })"/>
-    </tbody>
-  </table>
+      <p class="text-orange-primary text-lg font-bold pb-2">Active: <span class="font-semibold text-black-primary">false</span></p>
+      <table class="bg-white-primary" v-if="items.list.length > 5">
+        <thead>
+          <th>ID</th>
+          <th>Ismi sharifi</th>
+          <th>Foydalanuvchi nomi</th>
+          <th>Amal</th>
+        </thead>
+        <tbody v-for="item in items.list.slice(0, items.count)" :key="item.id">
+          <author-item v-if="item.isActive == false" :id="Number(item.id)" :username="item.username" :token="item.token" :uuid="item.uuid" :password="item.password" :name="item.name" :isActive="item.isActive" :image="item.image" :description="item.description" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, muallifni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'author', callback: getItems })"/>
+        </tbody>
+      </table>
     </div>
   </div>
-  <base-pagination :active="Math.trunc(Number(route.query.offset)/12) + 1 || 1" :perPage="12" :items="items.count" @change="(val:number) => changeQuery({key: 'offset', value: (val - 1)*12})"/>
-  <the-modal ref="modalRef" @submit="OPEN_LOADING_MODAL" @toast="val => OPEN_NOTIFICATION({text: val, callback: getItems })"/>
+  <!-- <base-pagination :active="Math.trunc(Number(route.query.offset)/10) + 1 || 1" :perPage="10" :items="items.count" @change="(val:number) => changeQuery({key: 'offset', value: (val - 1)*10})"/> -->
+  <the-modal ref="modalRef" @submit="OPEN_LOADING_MODAL" @toast="(val: any) => OPEN_NOTIFICATION({text: val, callback: getItems })"/>
 </div>
 </template>

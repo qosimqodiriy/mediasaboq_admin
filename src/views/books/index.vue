@@ -31,7 +31,6 @@ async function getItems() {
     CLOSE_LOADING_MODAL()
     items.value.count = response.count
     items.value.list = response.list
-    (response.list)
 }
 
 getItems()
@@ -43,19 +42,19 @@ getItems()
       <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.lang !== 'eng' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'uz'})">O'zbek tilida</button>
       <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.lang === 'eng'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'eng'})">Ingliz tilida</button>
     </div>
-    <div class="flex">
+    <div class="flex items-center">
       <div class="bg-white-primary flex px-5.5 py-3 rounded w-52 mx-8" role="button">
         <i class="ri-search-line text-black-secondary"></i>
         <input type="search" name="search" v-model="searchInput" @input="getItems" placeholder="Qidiruv" class="placeholder:text-black-200 text-black-200 focus:outline-none text-sm px-2 w-35">
       </div>
-      <router-link :to="{path: '/book'}" class="bg-orange-primary shadow-lg shadow-black-primary-500/50 flex items-center text-white-primary flex px-5.5 py-3 rounded" role="button" @click="">
+      <router-link :to="{path: '/book'}" class="bg-orange-primary shadow-lg shadow-black-primary-500/50 items-center text-white-primary flex px-5.5 py-3 rounded" role="button">
         <i class="ri-add-line"></i>
         <p class="text-sm px-2">Yangi kitob qo‘shish</p>
       </router-link>
     </div>
   </div>
-  <div class="grid grid-cols-4 gap-3.5">
-    <book-item v-for="item in items.list" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :name="item.name" :title="item.title" :description="item.description" :image="item.image" :url="item.url" :bookAuthor="item.bookAuthor" :category="item.category" :isActive="item.isActive" :isDeleted="item.isDeleted" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, kitobni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'book', callback: getItems })"/>
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+    <book-item v-for="item in items.list" :key="item.id" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :name="item.name" :title="item.title" :description="item.description" :image="item.image" :url="item.url" :bookAuthor="item.bookAuthor" :category="item.category" :isActive="item.isActive" :isDeleted="item.isDeleted" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, kitobni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'book', callback: getItems })"/>
   </div>
   <base-pagination :active="Math.trunc(Number(route.query.offset)/8) + 1 || 1" :perPage="8" :items="items.count" @change="(val:number) => changeQuery({key: 'offset', value: (val - 1)*8})"/>
 </div>

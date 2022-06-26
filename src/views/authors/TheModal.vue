@@ -83,8 +83,8 @@ defineExpose({
           <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError"/>
         </div>
         <label class="switch ml-3.5">
-          <input type="checkbox" :checked="data.formInfo.isActive">
-          <span class="slider round" @click="data.formInfo.isActive = !data.formInfo.isActive"></span>
+          <input type="checkbox" :checked="data.formInfo.isActive" @click="data.formInfo.isActive = !data.formInfo.isActive">
+          <span class="slider round"></span>
         </label>
       </div>
       <input type="text" v-model="data.formInfo.name" class="input mt-3.5" placeholder="Ismi sharifi" required>
