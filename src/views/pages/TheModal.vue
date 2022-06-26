@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { putFooter } from '@/services/staticPages';
-import { postPutTag, type TagModel, reset } from '@/services/tags'
+import { postPutTag, reset } from '@/services/tags'
 import { reactive } from 'vue'
 const emit = defineEmits(["submit", "toast"])
 const data = reactive<{display: boolean, footer:{uz: string, eng: string}}>({
@@ -14,7 +14,6 @@ const data = reactive<{display: boolean, footer:{uz: string, eng: string}}>({
 function open(item: {footer: {uz: string, eng: string}}) {
   data.display = true
   data.footer = Object.assign({}, item.footer)
-  (item)
 }
 
 async function submit() {
