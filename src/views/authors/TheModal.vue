@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { postPutAuthor, type AuthorModel, reset } from '@/services/authors'
+import { postPutAuthor, reset } from '@/services/authors'
+import type { AuthorModel } from '@/services/authors'
 import { reactive, ref } from 'vue';
 const emit = defineEmits(["toast"])
 const title = reactive({

@@ -141,29 +141,29 @@ function addSuggest(item: any) {
         <div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.isTop">
-              <span class="slider round" @click="data.formInfo.isTop = !data.formInfo.isTop"></span>
+              <input type="checkbox" :checked="data.formInfo.isTop" @click="data.formInfo.isTop = !data.formInfo.isTop">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Top</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.isMain">
-              <span class="slider round" @click="data.formInfo.isMain = !data.formInfo.isMain"></span>
+              <input type="checkbox" :checked="data.formInfo.isMain" @click="data.formInfo.isMain = !data.formInfo.isMain">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Asosiy</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.active">
-              <span class="slider round" @click="data.formInfo.active = !data.formInfo.active"></span>
+              <input type="checkbox" :checked="data.formInfo.active" @click="data.formInfo.active = !data.formInfo.active">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Faol</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.deleted">
-              <span class="slider round" @click="data.formInfo.deleted = !data.formInfo.deleted"></span>
+              <input type="checkbox" :checked="data.formInfo.deleted" @click="data.formInfo.deleted = !data.formInfo.deleted">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Favourite</p>
           </div>
@@ -202,11 +202,11 @@ function addSuggest(item: any) {
       <div class="grid grid-cols-2 gap-3.5 mb-3.5">
         <div>
           <base-selection @select="addTag" :url="'tags'" :title="'Teg'" :lang="data.formInfo.lang"/>
-          <p class="mr-3.5" v-for="item in data.formInfo.tags">{{item.name}}</p>
+          <p class="mr-3.5" v-for="item in data.formInfo.tags" :key="item.id">{{item.name}}</p>
         </div>
         <div>
         <the-select @select="addSuggest" :url="'articles'" :title="'O`shash maqola'" />
-        <p class="mr-3.5" v-for="item in data.formInfo.suggests">{{item.title}}</p>
+        <p class="mr-3.5" v-for="item in data.formInfo.suggests" :key="item.id">{{item.title}}</p>
       </div>
       </div>
       <button class="px-8 py-3.5 mr-3.5 bg-red-secondary text-red-primary rounded" v-if="data.formInfo.id !== undefined"  @click="OPEN_DELETE_MODAL({ id: Number(data.formInfo.id), text: 'Diqqat, media loyihani o‘chirishga aminmisiz?', title: `${data.formInfo.title}`, url: 'article' })">O'chirish</button>

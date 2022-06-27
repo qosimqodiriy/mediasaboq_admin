@@ -64,19 +64,19 @@ defineExpose({
         <i @click="reset(data.formInfo); data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
       </div>
       <form action="" @submit.prevent="submit" class="w-102">
-      <div class="flex flex-col mt-12 mb-8">
-        <div v-if="data.error" class="text-red-primary mb-3.5">
-          Iltimos, ijtimoiy tarmoq suratini joylang!
-        </div>
-        <div class="flex items-end">
-          <div class="border border-gray-secondary rounded h-30 w-30 bg-gray-primary mr-3.5">
-            <image-box ref="imageRef" class="rounded h-30 w-30" @invalid-input="showError"/>
+        <div class="flex flex-col mt-12 mb-8">
+          <div v-if="data.error" class="text-red-primary mb-3.5">
+            Iltimos, ijtimoiy tarmoq suratini joylang!
           </div>
-          <input type="number" v-model="data.formInfo.priority" class="input mt-3.5" placeholder="Muhimligi" required>
+          <div class="flex items-end">
+            <div class="border border-gray-secondary rounded h-30 w-30 bg-gray-primary mr-3.5">
+              <image-box ref="imageRef" class="rounded h-30 w-30" @invalid-input="showError"/>
+            </div>
+            <input type="number" v-model="data.formInfo.priority" class="input mt-3.5" placeholder="Muhimligi" required>
+          </div>
+          <input type="text" v-model="data.formInfo.url" class="input mt-3.5" placeholder="Havola" required>
         </div>
-        <input type="text" v-model="data.formInfo.url" class="input mt-3.5" placeholder="Havola" required>
-      </div>
-      <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id === undefined ? 'Qo‘shish' : 'O‘zgarishlarni saqlash' }}</button>
+        <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id === undefined ? 'Qo‘shish' : 'O‘zgarishlarni saqlash' }}</button>
       </form>
     </div>
     </div>

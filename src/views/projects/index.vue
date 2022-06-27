@@ -48,7 +48,7 @@ getItems()
         <i class="ri-search-line text-black-secondary"></i>
         <input type="search" name="search" v-model="searchInput" @input="getItems" placeholder="Qidiruv" class="placeholder:text-black-200 text-black-200 focus:outline-none text-sm px-2 w-35">
       </div>
-      <router-link :to="{path: '/project'}" class="bg-orange-primary shadow-lg shadow-black-primary-500/50 flex items-center text-white-primary px-5.5 py-3 rounded" role="button" @click="">
+      <router-link :to="{path: '/project'}" class="bg-orange-primary shadow-lg shadow-black-primary-500/50 flex items-center text-white-primary px-5.5 py-3 rounded" role="button">
         <i class="ri-add-line"></i>
         <p class="text-sm px-2">Yangi media loyiha qo‘shish</p>
       </router-link>

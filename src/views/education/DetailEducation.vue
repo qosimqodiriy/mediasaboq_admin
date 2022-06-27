@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { reactive, ref, defineAsyncComponent } from 'vue';
-import { postPutMedia, type MediaModel, resetEducation, getMedia } from '@/services/media';
-import { useRoute } from 'vue-router'
-import { inputDate } from '@/services/timeFunctions';
-import { getAuthorsSelect, getCategory } from '@/services/category';
 import router from '@/router'
+import { useRoute } from 'vue-router'
 import { OPEN_DELETE_MODAL } from '@/store';
 import type { Author } from '@/services/types';
+import type { MediaModel } from '@/services/media';
+import { inputDate } from '@/services/timeFunctions';
+import { reactive, ref, defineAsyncComponent } from 'vue';
+import { getAuthorsSelect, getCategory } from '@/services/category';
+import { postPutMedia, resetEducation, getMedia } from '@/services/media';
+
+const imageRef = ref()
 const route = useRoute()
 const emit = defineEmits(['toast'])
-const imageRef = ref()
 const Editor = defineAsyncComponent(() =>
   import('@/components/TextEditor.vue')
 )
@@ -93,21 +95,19 @@ async function submit() {
 function showError() {
   data.error = true
   data.msg = "Iltimos, ta'lim blogi suratini joylang!"
-  setTimeout(() => {
-    data.error = false
-  }, 3000);
+  setTimeout(() => { data.error = false }, 3000);
 }
 
 
 function addTag(item: any) {
   let found = false;
 
-for (let i = 0; i < data.formInfo.tags.length; i++) {
-  if (data.formInfo.tags[i].name == item.name) {
-    found = true;
-    break;
+  for (let i = 0; i < data.formInfo.tags.length; i++) {
+    if (data.formInfo.tags[i].name == item.name) {
+      found = true;
+      break;
+    }
   }
-}
   if (!found) {
     data.formInfo.tags.push(item)
   }
@@ -148,29 +148,29 @@ for (let i = 0; i < data.formInfo.suggests.length; i++) {
         <div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.isTop">
-              <span class="slider round" @click="data.formInfo.isTop = !data.formInfo.isTop"></span>
+              <input type="checkbox" :checked="data.formInfo.isTop"  @click="data.formInfo.isTop = !data.formInfo.isTop">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Top</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.isMain">
-              <span class="slider round" @click="data.formInfo.isMain = !data.formInfo.isMain"></span>
+              <input type="checkbox" :checked="data.formInfo.isMain"  @click="data.formInfo.isMain = !data.formInfo.isMain">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Asosiy</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.active">
-              <span class="slider round" @click="data.formInfo.active = !data.formInfo.active"></span>
+              <input type="checkbox" :checked="data.formInfo.active"  @click="data.formInfo.active = !data.formInfo.active">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Faol</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.deleted">
-              <span class="slider round" @click="data.formInfo.deleted = !data.formInfo.deleted"></span>
+              <input type="checkbox" :checked="data.formInfo.deleted"  @click="data.formInfo.deleted = !data.formInfo.deleted">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Favourite</p>
           </div>
@@ -213,11 +213,11 @@ for (let i = 0; i < data.formInfo.suggests.length; i++) {
       <div class="grid grid-cols-2 gap-3.5 mb-3.5">
         <div>
           <base-selection @select="addTag" :url="'tags'" :title="'Teg'" :lang="data.formInfo.lang"/>
-          <p class="mr-3.5" v-for="item in data.formInfo.tags">{{item.name}}</p>
+          <p class="mr-3.5" v-for="item in data.formInfo.tags" :key="item.id">{{item.name}}</p>
         </div>
         <div>
         <the-select @select="addSuggest" :url="'articles'" :title="'O`shash maqola'" />
-        <p class="mr-3.5" v-for="item in data.formInfo.suggests">{{item.title}}</p>
+        <p class="mr-3.5" v-for="item in data.formInfo.suggests" :key="item.id">{{item.title}}</p>
       </div>
       </div>
       <button class="px-8 py-3.5 mr-3.5 bg-red-secondary text-red-primary rounded" v-if="data.formInfo.id !== undefined"  @click="OPEN_DELETE_MODAL({ id: Number(data.formInfo.id), text: 'Diqqat, ta`lim blogni o‘chirishga aminmisiz?', title: `${data.formInfo.title}`, url: 'article' })">O'chirish</button>

@@ -65,40 +65,38 @@ defineExpose({
   <Modal v-if="data.display">
     <div class="h-screen flex items-center">
       <div class="bg-white-primary p-8 shadow-lg rounded-2xl z-0" :class="data.display ? 'z-0 scale-100 animate-blowUp': ''">
-      <div class="flex justify-between">
-        <h2 class="text-xl font-semibold text-black-primary"> {{ data.formInfo.id != undefined ? 'Tahrirlash' : 'Yangi kategoriya qo‘shish' }}</h2>
-        <i @click="reset(data.formInfo); data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
+        <div class="flex justify-between">
+          <h2 class="text-xl font-semibold text-black-primary"> {{ data.formInfo.id != undefined ? 'Tahrirlash' : 'Yangi kategoriya qo‘shish' }}</h2>
+          <i @click="reset(data.formInfo); data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
+        </div>
+        <form action="" @submit.prevent="submit" class="w-102">
+          <div v-if="data.error" class="text-red-primary mb-3.5">
+              {{data.msg}}
+          </div>
+          <div class="flex flex-col mt-12 mb-8">
+            <div class="flex items-end">
+              <div class="border border-gray-secondary rounded w-30 h-30 bg-gray-primary">
+                <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError"/>
+              </div>
+              <select name="lang" id="lang" v-model="data.formInfo.lang" required class="mx-3.5">
+                <option :value="''" disabled selected>Til</option>
+                <option value="uz">O'zbek tili</option>
+                <option value="eng">English</option>
+              </select>
+              <select name="lang" id="lang" v-model="data.formInfo.type" required>
+                <option :value="0" disabled selected>Turi</option>
+                <option :value="1">Media</option>
+                <option :value="2">Ta'lim</option>
+              </select>
+            </div>
+            <div class="flex flex-col">
+              <input type="text" v-model="data.formInfo.name" class="mt-3.5 input" placeholder="Nomi" required>
+              <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.slug" class="mt-3.5 input" placeholder="Slug" required>
+            </div>
+          </div>
+          <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
+        </form>
       </div>
-      <form action="" @submit.prevent="submit" class="w-102">
-      <div v-if="data.error" class="text-red-primary mb-3.5">
-          {{data.msg}}
-        </div>
-      <div class="flex flex-col mt-12 mb-8">
-        <div class="flex items-end">
-          <div class="border border-gray-secondary rounded w-30 h-30 bg-gray-primary">
-          <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError"/>
-        </div>
-        <select name="lang" id="lang" v-model="data.formInfo.lang" required class="mx-3.5">
-          <option :value="''" disabled selected>Til</option>
-          <option value="uz">O'zbek tili</option>
-          <option value="ru">Русский</option>
-          <option value="eng">English</option>
-        </select>
-        <select name="lang" id="lang" v-model="data.formInfo.type" required>
-          <option :value="0" disabled selected>Turi</option>
-          <option :value="1">Media</option>
-          <option :value="2">Ta'lim</option>
-          <option :value="3">Media loyiha</option>
-        </select>
-        </div>
-        <div class="flex flex-col">
-        <input type="text" v-model="data.formInfo.name" class="mt-3.5 input" placeholder="Nomi" required>
-        <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.slug" class="mt-3.5 input" placeholder="Slug" required>
-        </div>
-      </div>
-      <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
-      </form>
     </div>
-    </div>
-    </Modal>
+  </Modal>
 </template>

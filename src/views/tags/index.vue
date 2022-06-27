@@ -51,42 +51,42 @@ getItems()
       <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.lang !== 'eng' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'uz'})">O'zbek tilida</button>
       <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.lang === 'eng'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'eng'})">Ingliz tilida</button>
     </div>
-    <div class="flex">
+    <div class="flex items-center">
       <div class="bg-white-primary flex px-5.5 py-3 rounded w-52 mx-8" role="button">
         <i class="ri-search-line text-black-secondary"></i>
         <input type="search" name="search" v-model="searchInput" @input="getItems" placeholder="Qidiruv" class="placeholder:text-black-200 text-black-200 focus:outline-none text-sm px-2 w-35">
       </div>
-      <button class="bg-orange-primary shadow-lg shadow-black-primary-500/50 flex items-center text-white-primary flex px-5.5 py-3 rounded" role="button" @click="openModal">
+      <button class="bg-orange-primary shadow-lg shadow-black-primary-500/50 items-center text-white-primary flex px-5.5 py-3 rounded" role="button" @click="openModal">
         <i class="ri-add-line"></i>
         <p class="text-sm px-2">Yangi teg qo‘shish</p>
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-8">
+  <div class="grid lg:grid-cols-2 gap-8">
     <div>
       <table class="bg-white-primary">
-    <thead>
-      <th>Nomi</th>
-      <th>Ishlatilganligi</th>
-      <th>Amal</th>
-    </thead>
-    <tbody>
-      <category-item v-for="item in items.list.slice(0, 5)" :id="Number(item.id)" :lang="item.lang" :articleCount="Number(item.articleCount)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
-    </tbody>
-  </table>
-  </div>
+        <thead>
+          <th>Nomi</th>
+          <th>Ishlatilganligi</th>
+          <th>Amal</th>
+        </thead>
+        <tbody>
+          <category-item v-for="item in items.list.slice(0, 5)" :id="Number(item.id)" :lang="item.lang" :articleCount="Number(item.articleCount)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
+        </tbody>
+      </table>
+    </div>
   <div>
     <table class="bg-white-primary" v-if="items.list.length > 5">
-    <thead>
-      <th>Nomi</th>
-      <th>Ishlatilganligi</th>
-      <th>Amal</th>
-    </thead>
-    <tbody>
-      <category-item v-for="item in items.list.slice(5, 10)" :id="Number(item.id)" :lang="item.lang" :articleCount="Number(item.articleCount)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
-    </tbody>
-  </table>
-  </div>
+      <thead>
+        <th>Nomi</th>
+        <th>Ishlatilganligi</th>
+        <th>Amal</th>
+      </thead>
+      <tbody>
+        <category-item v-for="item in items.list.slice(5, 10)" :id="Number(item.id)" :lang="item.lang" :articleCount="Number(item.articleCount)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
+      </tbody>
+    </table>
+    </div>
   </div>
   <base-pagination :active="Math.trunc(Number(route.query.offset)/10) + 1 || 1" :perPage="10" :items="items.count" @change="(val:number) => changeQuery({key: 'offset', value: (val - 1)*10})"/>
   <the-modal ref="modalRef" @toast="val => OPEN_NOTIFICATION({text: val, callback: getItems })"/>

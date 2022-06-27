@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { reactive, ref, defineAsyncComponent } from 'vue';
-import { postPutMedia, type MediaModel, resetMedia, getMedia } from '@/services/media';
+import { postPutMedia, resetMedia, getMedia } from '@/services/media';
+import type { MediaModel } from '@/services/media';
 import { useRoute } from 'vue-router'
 import { inputDate } from '@/services/timeFunctions';
 import { getAuthorsSelect, getCategory } from '@/services/category';
 import router from '@/router'
 import { OPEN_DELETE_MODAL } from '@/store';
 import type { Author } from '@/services/types';
-import BaseSelection from '../../components/BaseSelection.vue';
+// import BaseSelection from '../../components/BaseSelection.vue';
 const route = useRoute()
 const emit = defineEmits(['toast'])
 const imageRef = ref()
@@ -162,15 +163,15 @@ for (let i = 0; i < data.formInfo.suggests.length; i++) {
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.active">
-              <span class="slider round" @click="data.formInfo.active = !data.formInfo.active"></span>
+              <input type="checkbox" :checked="data.formInfo.active" @click="data.formInfo.active = !data.formInfo.active">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Faol</p>
           </div>
           <div class="flex items-center">
             <label class="switch ml-3.5">
-              <input type="checkbox" :checked="data.formInfo.deleted">
-              <span class="slider round" @click="data.formInfo.deleted = !data.formInfo.deleted"></span>
+              <input type="checkbox" :checked="data.formInfo.deleted" @click="data.formInfo.deleted = !data.formInfo.deleted">
+              <span class="slider round"></span>
             </label>
             <p class="px-3.5">Favourite</p>
           </div>
@@ -213,16 +214,16 @@ for (let i = 0; i < data.formInfo.suggests.length; i++) {
       <div class="grid grid-cols-2 gap-3.5 mb-3.5">
         <div>
           <base-selection @select="addTag" :url="'tags'" :title="'Teg'" :lang="data.formInfo.lang"/>
-          <p class="mr-3.5" v-for="item in data.formInfo.tags">{{item.name}}</p>
+          <p class="mr-3.5" v-for="item in data.formInfo.tags" :key="item.id">{{item.name}}</p>
         </div>
         <div>
-        <the-select @select="addSuggest" :url="'articles'" :title="'O`shash maqola'" />
-        <p class="mr-3.5" v-for="item in data.formInfo.suggests">{{item.title}}</p>
-      </div>
+          <the-select @select="addSuggest" :url="'articles'" :title="'O`shash maqola'" />
+          <p class="mr-3.5" v-for="item in data.formInfo.suggests" :key="item.id">{{item.title}}</p>
+        </div>
       </div>
       <div class="flex mt-3.5">
         <div class="px-8 w-32 py-3.5 mr-3.5 bg-red-secondary text-red-primary rounded" v-if="data.formInfo.id !== undefined" role="button"  @click="OPEN_DELETE_MODAL({ id: Number(data.formInfo.id), text: 'Diqqat, media blogni o‘chirishga aminmisiz?', title: `${data.formInfo.title}`, url: 'article' })">O'chirish</div>
-      <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
+        <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
       </div>
       </form>
   </div>
