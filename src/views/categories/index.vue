@@ -52,12 +52,12 @@ getItems()
       <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.lang === 'eng'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'eng'})">Ingliz tilida</button>
     </div>
     <div class="bg-white-primary rounded-3xl">
-      <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.type !== '2' && route.query.type !== '3' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 1})">Media</button>
-      <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.type === '2'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 2})">Ta'lim</button>
-      <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.type === '3'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 3})">Media loyiha</button>
+      <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.type !== '2' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 1})">Media</button>
+      <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.type === '2' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 2})">Ta'lim</button>
+      <!-- <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.type === '3'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 3})">Media loyiha</button> -->
     </div>
-    <div class="flex">
-      <div class="bg-white-primary flex px-5.5 py-3 rounded w-52 mx-8" role="button">
+    <div class="flex items-center">
+      <div class="bg-white-primary flex px-5.5 py-3 rounded w-52 mr-8" role="button">
         <i class="ri-search-line text-black-secondary"></i>
         <input type="search" name="search" v-model="searchInput" @input="getItems" placeholder="Qidiruv" class="placeholder:text-black-200 text-black-200 focus:outline-none text-sm px-2 w-35">
       </div>
@@ -67,7 +67,7 @@ getItems()
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-3 gap-8">
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
     <category-item v-for="item in items.list" :id="Number(item.id)" :lang="item.lang" :articleCount="item.articleCount" :name="item.name" :type="item.type" :image="item.image" :slug="item.slug" :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, kategoriyani o‘chirishga aminmisiz?', title: `${item.name}`, url: 'category', callback: getItems })"/>
   </div>
   <base-pagination :active="Math.trunc(Number(route.query.offset)/12) + 1 || 1" :perPage="12" :items="items.count" @change="(val:number) => changeQuery({key: 'offset', value: (val - 1)*12})"/>

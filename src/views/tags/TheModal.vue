@@ -58,7 +58,6 @@ defineExpose({
         <select name="lang" id="lang" v-model="data.formInfo.lang" required>
           <option :value="''" disabled selected>Til</option>
           <option value="uz" @click="title.name = 'Nomi'">O'zbek tili</option>
-          <option value="ru" @click="title.name = 'Название' ">Русский</option>
           <option value="eng" @click="title.name = 'Name' ">English</option>
         </select>
         <div class="flex flex-col">

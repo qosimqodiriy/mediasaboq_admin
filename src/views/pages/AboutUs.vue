@@ -67,13 +67,15 @@ function showError() {
     <p class="font-bold text-black-primary text-2xl leading-8 mx-3.5">Statik sahifalar</p>
   </div>
   <form action="" @submit.prevent="submit" class="w-100 bg-white-primary p-8 rounded">
-    <TextEditor v-model="data.formInfo.body.uz" placeholder="O'zbek tilida"/>
-    <TextEditor v-model="data.formInfo.body.eng" placeholder="In English" />
-    <div v-if="data.error" class="text-red-primary my-3">
-          Iltimos, aloqa suratini joylang!
+    <div class="space-y-3.5">
+      <TextEditor v-model="data.formInfo.body.uz" placeholder="O'zbek tilida"/>
+      <TextEditor v-model="data.formInfo.body.eng" placeholder="In English" />
+      <div v-if="data.error" class="text-red-primary my-3">
+        Iltimos, aloqa suratini joylang!
+      </div>
     </div>
     <div class="grid lg:grid-cols-2 gap-3.5 mt-4">
-      <div class="flex items-center justify-between border border-gray-secondary p-3.5 rounded" v-for="item in data.formInfo.contacts">
+      <div class="flex items-center justify-between border border-gray-secondary p-3.5 rounded" v-for="(item, index) in data.formInfo.contacts" :key="index">
         <div class="flex items-center">
           <BaseImage :src="item.icon" class="h-11 w-11 rounded"/>
           <a :href="item.contact" class="ml-3.5 text-xl font-medium">{{item.name}}</a>

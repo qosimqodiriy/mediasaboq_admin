@@ -96,8 +96,8 @@ function showError() {
           <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError"/>
         </div>
         <label class="switch ml-3.5">
-          <input type="checkbox" :checked="data.formInfo.isActive">
-          <span class="slider round" @click="data.formInfo.isActive = !data.formInfo.isActive"></span>
+          <input type="checkbox" :checked="data.formInfo.isActive" @click="data.formInfo.isActive = !data.formInfo.isActive">
+          <span class="slider round"></span>
         </label>
       </div>
       <div class="flex flex-col my-3.5">
@@ -105,7 +105,6 @@ function showError() {
           <select name="lang" id="lang" v-model="data.formInfo.lang" required>
           <option :value="''" disabled selected>Til</option>
           <option value="uz">O'zbek tili</option>
-          <option value="ru">Русский</option>
           <option value="eng">English</option>
         </select>
         </div>

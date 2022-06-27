@@ -186,7 +186,6 @@ for (let i = 0; i < data.formInfo.suggests.length; i++) {
           <select name="lang" id="lang" v-model="data.formInfo.lang" required>
           <option :value="''" disabled selected>Til</option>
           <option value="uz">O'zbek tili</option>
-          <option value="ru">Русский</option>
           <option value="eng">English</option>
         </select>
         <input type="text" v-model="data.formInfo.credit" class="input" placeholder="Surat olingan joy">
