@@ -79,8 +79,6 @@ async function loadSelections() {
   async function createNewElement() {
     const [error, response] = await postSelections_API({ name: data.query, lang: props.lang }, String(props.url))
     emit('select', response)
-    console.log(response)  
-    
     data.query = ''
     data.visible = !data.visible
     }

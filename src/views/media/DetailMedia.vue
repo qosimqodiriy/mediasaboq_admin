@@ -138,7 +138,6 @@ for (let i = 0; i < data.formInfo.suggests.length; i++) {
     </div>
     <p class="font-bold text-black-primary text-2xl leading-8 mx-3.5">Media blog</p>
   </div>
-  <p>{{ data.formInfo.tags }}</p>
   <form action="" @submit.prevent="submit" class="w-100 bg-white-primary p-8 rounded">
   <div v-if="data.error" class="text-red-primary mb-3.5">
           {{data.msg}}
