@@ -31,11 +31,9 @@ async function getItems() {
   const [error, response] = await getEmails(searchInput.value, Number(offset))
   CLOSE_LOADING_MODAL()
   if (response) {
-    items.value.count = response.length
-    items.value.list = response
-    console.log(items);
-    
-    }
+    items.value.count = response.count
+    items.value.list = response.list    
+  }
 }
 
 function openModal(val: any) {
