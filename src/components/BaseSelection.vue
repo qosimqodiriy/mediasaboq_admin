@@ -78,8 +78,7 @@ async function loadSelections() {
 
   async function createNewElement() {
     const [error, response] = await postSelections_API({ name: data.query, lang: props.lang }, String(props.url))
-    // oxiirgi qo'shilhgan elementni olish kerak
-    emit('select', {name: response.name, lang: props.lang, id: response.id })
+    emit('select', response)
     console.log(response)  
     
     data.query = ''
