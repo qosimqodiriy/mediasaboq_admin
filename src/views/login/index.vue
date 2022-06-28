@@ -65,11 +65,11 @@ function handleSubmit() {
           <h2 class="font-vibes text-3xl text-green-primary">media<span class="text-orange-primary">saboq</span></h2>
           <p v-if="data.passwordError !== ''" class="text-red-primary mb-3">{{data.passwordError}}</p>
           <div class="w-full relative">
-            <input class="w-full rounded text-sm leading-4 text-black-secondary border border-gray-secondary focus:outline-none bg-gray-primary h-11.5 px-5 py-3" v-model="data.username" type="text" name="username" id="username" required  autocomplete="off">
+            <input class="w-full rounded text-sm leading-4 text-black-secondary border border-gray-secondary focus:outline-none bg-gray-primary h-11.5 px-5 py-3" v-model="data.username" type="text" name="username" id="username" required autofocus  autocomplete="off">
             <label class="label transition-all text-sm leading-4 w-full text-black-secondary absolute top-3.5 left-6" for="username">Foydalanuvchi</label>
           </div>
           <div class="w-full relative mt-3.5">
-            <input class="w-full rounded text-sm leading-4 text-black-secondary border border-gray-secondary focus:outline-none bg-gray-primary h-11.5 px-5 py-3" v-model="data.password" type="password" name="password" id="password" required>
+            <input class="w-full rounded text-sm leading-4 text-black-secondary border border-gray-secondary focus:outline-none bg-gray-primary h-11.5 px-5 py-3" v-model="data.password" type="password" name="password" id="password" required autofocus>
             <label class="label transition-all text-sm leading-4 w-full text-black-secondary absolute top-3.5 left-6" for="password">Parol</label>
           </div>
         </div>

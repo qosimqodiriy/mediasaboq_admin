@@ -79,7 +79,9 @@ async function loadSelections() {
   async function createNewElement() {
     const [error, response] = await postSelections_API({ name: data.query, lang: props.lang }, String(props.url))
     // oxiirgi qo'shilhgan elementni olish kerak
-    // emit('select', {name: data.query, lang: props.lang })
+    emit('select', {name: response.name, lang: props.lang, id: response.id })
+    console.log(response)  
+    
     data.query = ''
     data.visible = !data.visible
     }
@@ -98,7 +100,7 @@ async function loadSelections() {
       </div>
     </li>
     <ul :style="{ height: data.list.length + 'px', maxHeight: '300px'}" class="dropdown-menu dropdown_menu--animated dropdown_menu-6 bg-gray-primary" ref="scrollableElement" :class="data.visible ? 'block': 'none'" @scroll="handleScroll">
-      <input type="search" placeholder="Qidiruv"  class="search px-4 focus:outline-none" v-model="data.query" @input="loadSelections" @keypress.enter.prevent="createNewElement()">
+      <input type="search" role="button" placeholder="Qidiruv"  class="search px-4 focus:outline-none" v-model="data.query" @input="loadSelections" @keypress.enter.prevent="createNewElement()" required>
       <div v-for="(item, i) in data.list" :key="i" ref="lastElement" @click="data.value = item">
         <li role="button" v-if="data.list.length == i + 1" @click="data.value = item; emit('select', item); data.visible = !data.visible" class="bg-gray-primary px-4">
           {{item.name}}
