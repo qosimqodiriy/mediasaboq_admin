@@ -19,7 +19,7 @@ async function handleImageUpload(blobInfo: any, success: any, failure: any, fold
 </script>
 <template>
      <Editor
-       api-key="80ezov8y3ub2sqg95cdmzc1iyhlg8aea5mmupvv2aieod53v"
+       api-key="1yt8kb37zy0a57vbymcq0bq493c6zpymw4ehb6lev3dn5tvg"
        output-format="html"
        :init="{
          images_upload_credentials: true,
