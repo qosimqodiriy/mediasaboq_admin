@@ -53,18 +53,18 @@ defineExpose({
         <i @click="reset(data.formInfo); data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
       </div>
       <form action="" @submit.prevent="submit" class="w-102">
-      <div class="flex flex-col mt-12 mb-8">
-        <p class="my-3 text-red-primary" v-if="data.error">Bunday teg nomi mavjud!</p>
-        <select name="lang" id="lang" v-model="data.formInfo.lang" required>
-          <option :value="''" disabled selected>Til</option>
-          <option value="uz" @click="title.name = 'Nomi'">O'zbek tili</option>
-          <option value="eng" @click="title.name = 'Name' ">English</option>
-        </select>
-        <div class="flex flex-col">
-        <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.name" class="mt-3.5 input" :placeholder="title.name" required>
+        <div class="flex flex-col mt-12 mb-8">
+          <p class="my-3 text-red-primary" v-if="data.error">Bunday teg nomi mavjud!</p>
+          <select name="lang" id="lang" v-model="data.formInfo.lang" required>
+            <option :value="''" disabled selected>Til</option>
+            <option value="uz" @click="title.name = 'Nomi'">O'zbek tili</option>
+            <option value="eng" @click="title.name = 'Name' ">English</option>
+          </select>
+          <div class="flex flex-col">
+          <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.name" class="mt-3.5 input" :placeholder="title.name" required>
+          </div>
         </div>
-      </div>
-      <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
+        <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
       </form>
     </div>
     </div>

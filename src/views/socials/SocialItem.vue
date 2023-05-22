@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { date } from '../../services/timeFunctions'
 import { ref } from 'vue';
+import { date } from '../../services/timeFunctions'
+
 const emit = defineEmits(["remove", "edit"])
 const iconActive = ref(false);
 const props = defineProps({
@@ -22,6 +23,8 @@ const props = defineProps({
   }
 })
 </script>
+
+
 <template>
   <div class="bg-white-primary rounded relative p-3.5 m-0" @mouseenter="iconActive = !iconActive" @mouseleave="iconActive = !iconActive">
     <div class="flex absolute top-3.5 right-3.5 z-10" v-if="iconActive">
@@ -33,11 +36,13 @@ const props = defineProps({
       </div>
     </div>
     <div class="flex items-center">
-      <base-image :src="props.icon" alt="image" class="w-12 h-12 rounded object-cover bg-orange-primary p-2"/>
+      <base-image :src="props.icon" alt="image" class="w-12 h-12 rounded object-cover bg-black-secondary p-2"/>
       <p class="text-normal lines text-black-primary ml-3.5">{{props.url}}</p>
     </div>
   </div>
 </template>
+
+
 <style scoped>
 .lines {
   text-overflow: ellipsis;

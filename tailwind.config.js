@@ -27,6 +27,13 @@ module.exports = {
         'secondary': '#fbf8de',
         'primary': '#433d0b',
       },
+      'colour': {
+        'red': '#FF0000',
+        'blue': '#0000FF',
+        'green': '#00ff00',
+        'indigo': '#6F00FF',
+        'orange': '#FEBE10',
+      },
       'orange': {
         'primary': '#ff6300'
       }
@@ -48,6 +55,7 @@ module.exports = {
       '6': '24px',
       '7': '27px',
       '8': '30px',
+      '10': '36px',
       '11': '44px',
       '11.5': '51px',
       '12': '60px',
@@ -140,5 +148,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }

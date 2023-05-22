@@ -51,7 +51,7 @@ const props = defineProps({
         <div role="button" class="bg-red-secondary w-11 h-11 flex justify-center items-center rounded-full mr-2.5" @click="emit('remove', props.id, props.name)">
           <i class="ri-delete-bin-6-line text-xl text-red-primary"></i>
         </div>
-        <div @click="emit('edit', props)" role="button" class="bg-gray-primary w-11 h-11 flex justify-center items-center rounded-full" >
+        <div @click="emit('edit', props)" role="button" class="bg-gray-primary w-11 h-11 flex justify-center items-center rounded-full shrink-0 z-10" >
           <i class="ri-arrow-right-line text-xl text-black-primary"></i>
         </div>
     </td>

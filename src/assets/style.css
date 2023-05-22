@@ -13,6 +13,8 @@
 }
 
 .main {
+  padding-top: 30px;
+  padding-bottom: 30px;
   width: calc(100vw - 220px);
 }
 
@@ -142,7 +144,8 @@ input[type=date]:focus::-webkit-datetime-edit {
   color: black !important;
 }
 
-input:valid + label, input:focus + label {
+input:valid + label,
+input:focus + label {
   display: none;
 }
 

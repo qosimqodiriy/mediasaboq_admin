@@ -65,7 +65,7 @@ const props = defineProps({
       </div>
     </div>
     <div class="flex flex-col">
-        <BaseImage :src="props.image" class="w-100 h-68"/>
+        <BaseImage :src="props.image" class="w-100 h-68 object-cover"/>
       <div class="p-3.5">
         <p class="text-xl text-black-primary lines font-semibold">{{props.name}}</p>
         <p class="text-sm text-black-secondary">{{props.bookAuthor}}</p>

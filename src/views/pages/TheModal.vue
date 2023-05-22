@@ -29,7 +29,7 @@ defineExpose({
 </script>
 <template>
   <Modal v-if="data.display">
-    <div class="h-screen flex items-center">
+    <div class="h-screen flex items-start p-5">
       <div class="bg-white-primary p-8 shadow-lg rounded-2xl z-0" :class="data.display ? 'z-0 scale-100 animate-blowUp': ''">
       <div class="flex justify-between">
         <h2 class="text-xl font-semibold text-black-primary">Tahrirlash</h2>
@@ -37,9 +37,9 @@ defineExpose({
       </div>
       <form action="" @submit.prevent="submit" class="w-102">
         <div class="flex flex-col mb-8">
-          <div class="flex flex-col">
-            <input type="text" v-model="data.footer.uz" class="mt-3.5 input" placeholder="O'zbek tilida" required>
-            <input type="text" v-model="data.footer.eng" class="mt-3.5 input" placeholder="In English" required>
+          <div class="flex flex-col gap-5">
+            <textarea v-model="data.footer.uz" rows="10" placeholder="O'zbek tilida" required></textarea>
+            <textarea v-model="data.footer.eng" rows="10" placeholder="In English" required></textarea>
           </div>
         </div>
         <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">O‘zgarishlarni saqlash</button>

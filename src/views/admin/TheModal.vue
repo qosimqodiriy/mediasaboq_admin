@@ -49,7 +49,7 @@ defineExpose({
       <div class="flex flex-col mt-12 mb-8">
         <p class="my-3 text-red-primary" v-if="data.error">Bunday teg nomi mavjud!</p>
         <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.username" class="mt-3.5 input" placeholder="Foydalanuvchi nomi" required>
-        <input type="password" v-model="data.formInfo.password" class="mt-3.5 input" placeholder="Parol" required>
+        <input type="text" v-model="data.formInfo.password" class="mt-3.5 input" placeholder="Parol" required>
       </div>
       <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">O‘zgarishlarni saqlash</button>
       </form>

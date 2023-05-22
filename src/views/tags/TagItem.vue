@@ -21,6 +21,7 @@ const props = defineProps({
   }
 })
 </script>
+
 <template>
   <tr class="rounded m-0" v-if="props.name !== undefined">
       <td class="text-black-primary lines font-semibold">{{props.name}}</td>

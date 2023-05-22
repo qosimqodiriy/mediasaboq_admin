@@ -4,11 +4,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/authors',
-      name: 'authors',
-      component: () => import('@/views/authors/index.vue'),
-    },
-    {
       path: '/401',
       name: 'unauthentication',
       component: () => import('@/views/errorViews/unAuthentication.vue'),
@@ -24,14 +19,19 @@ const router = createRouter({
       component: () => import('@/views/errorViews/serverError.vue'),
     },
     {
-      path: '/tags',
-      name: 'tags',
-      component: () => import('@/views/tags/index.vue'),
-    },
-    {
       path: '/',
       name: 'categories',
       component: () => import('@/views/categories/index.vue'),
+    },
+    {
+      path: '/authors',
+      name: 'authors',
+      component: () => import('@/views/authors/index.vue'),
+    },
+    {
+      path: '/tags',
+      name: 'tags',
+      component: () => import('@/views/tags/index.vue'),
     },
     {
       path: '/login',

@@ -43,8 +43,8 @@ const props = defineProps({
         <i class="ri-delete-bin-6-line text-xl text-red-primary"></i>
       </div>
     </div>
-    <div class="flex">
-      <BaseImage :src="props.image" class="h-11.5 w-11.5 rounded mr-3.5"/>
+    <div class="flex overflow-hidden">
+      <BaseImage :src="props.image" class="h-11.5 w-11.5 object-cover rounded mr-3.5"/>
       <div class="w-full">
          <p class="text-xl text-black-primary lines font-semibold">{{props.name}}</p>
         <p class="text-sm text-black-secondary">{{props.articleCount}} ta maqola bor</p>
