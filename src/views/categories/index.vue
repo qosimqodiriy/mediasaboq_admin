@@ -53,15 +53,15 @@ getItems()
   <div>
     <div class="main bg-gray-primary px-8 md:px-10 lg:px-12 right-0 fixed top-0 bottom-0 overflow-y-scroll">
       <div class="flex justify-between items-center flex-wrap gap-5 mb-10">
-        <div class="flex items-center bg-white-primary rounded-2xl xl:rounded-3xl">
-          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-2xl xl:rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.lang !== 'eng' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'uz'})">O'zbek <span class="hidden xl:block">tilida</span></p>
-          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-2xl xl:rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.lang === 'eng'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'eng'})">Ingliz <span class="hidden xl:block">tilida</span></p>
+        <div class="flex items-center bg-white-primary rounded-3xl">
+          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.lang !== 'eng' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'uz'})">O'zbek <span class="hidden xl:block">tilida</span></p>
+          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.lang === 'eng'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'lang', value: 'eng'})">Ingliz <span class="hidden xl:block">tilida</span></p>
         </div>
 
-        <div class="flex items-center bg-white-primary rounded-2xl xl:rounded-3xl">
-          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-2xl xl:rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.type !== '2' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 1})">Media</p>
-          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-2xl xl:rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.type === '2' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 2})">Ta'lim</p>
-          <!-- <button class="text-sm px-6 py-3.5 rounded-2xl xl:rounded-3xl" :class="[route.query.type === '3'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 3})">Media loyiha</button> -->
+        <div class="flex items-center bg-white-primary rounded-3xl">
+          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.type !== '2' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 1})">Media</p>
+          <p class="text-sm px-3 md:px-4 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-3xl whitespace-nowrap flex items-center gap-1.5" :class="[route.query.type === '2' ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 2})">Ta'lim</p>
+          <!-- <button class="text-sm px-6 py-3.5 rounded-3xl" :class="[route.query.type === '3'  ? 'bg-orange-primary text-white-primary': '']" @click="changeQuery({key: 'type', value: 3})">Media loyiha</button> -->
         </div>
 
         <div class="w-full lg:w-auto flex items-center justify-between">

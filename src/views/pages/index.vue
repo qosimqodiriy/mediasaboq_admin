@@ -50,7 +50,7 @@ getItems()
               </div>
             </div>
             <p>{{items.footer.footer.uz}}</p>
-            <p class="mt-3.5">{{items.footer.footer.eng}}</p>
+            <!-- <p class="mt-3.5">{{items.footer.footer.eng}}</p> -->
           </div>
         </div>
         <div>
