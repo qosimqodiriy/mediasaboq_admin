@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Modal from './GlobalModal.vue';
 import { _loading } from '@/store/theLoading'
 </script>
 
@@ -21,9 +20,11 @@ import { _loading } from '@/store/theLoading'
   /* backdrop-filter: blur(1px); */
   background: rgba(234, 234, 234, 0.3);
 }
+
 svg {
   animation: rotation 1s infinite linear;
 }
+
 
 @keyframes rotation {
   from {
@@ -33,4 +34,5 @@ svg {
   to {
     transform: rotate(359deg);
   }
-}</style>
+}
+</style>

@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import { getAdmin } from '@/store/admin';
 import { defineAsyncComponent, ref } from 'vue'
-import type { AdminModel } from '../../services/admin';
 import { OPEN_NOTIFICATION } from '../../store';
-const TheModal = defineAsyncComponent(() =>
-  import('./TheModal.vue')
-)
-const items = ref<{admin: AdminModel}>({
-    admin: {}
-})
+import type { AdminModel } from '../../services/admin';
+
 
 const modalRef = ref()
+const items = ref<{admin: AdminModel}>({ admin: {} })
+const TheModal = defineAsyncComponent(() => import('./TheModal.vue'))
+
 async function getItems() {
   const admin = getAdmin()
   items.value.admin = admin
@@ -19,8 +17,10 @@ async function getItems() {
 function openModal(val: any) {
   modalRef.value.open(val)
 }
+
 getItems()
 </script>
+
 <template>
   <div>
     <div class="main bg-gray-primary px-8 md:px-10 lg:px-12 right-0 fixed top-0 bottom-0 overflow-y-scroll">

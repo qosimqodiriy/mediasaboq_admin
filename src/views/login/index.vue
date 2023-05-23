@@ -59,6 +59,9 @@ function handleSubmit() {
 
 <template>
   <div class="w-full h-screen flex justify-center items-center login z-10">
+    <div class="mp4">
+      <video autoplay loop muted src="@/assets/videos/background.mp4"></video>
+    </div>
     <div class="bg-white-primary p-8 rounded-2xl w-99">
       <form action="" method="post" @submit.prevent="handleSubmit">
         <div class="flex flex-col">
@@ -92,5 +95,21 @@ input:valid + label{
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.mp4 {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mp4 video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 </style>

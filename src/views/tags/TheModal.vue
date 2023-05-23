@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { postPutTag, type TagModel, reset } from '@/services/tags'
 import { reactive } from 'vue'
+import { postPutTag, type TagModel, reset } from '@/services/tags'
+
 const emit = defineEmits(["toast"])
-const title = reactive({
-  name: 'Nomi'
-})
+const title = reactive({ name: 'Nomi' })
+
 const data = reactive<{ error: boolean, display: boolean, formInfo: TagModel }>({
   error: false,
   display: false,
@@ -40,33 +40,35 @@ async function submit() {
     }
   })
 }
+
 defineExpose({
   open
 })
 </script>
+
 <template>
   <Modal v-if="data.display">
     <div class="h-screen flex items-center">
       <div class="bg-white-primary p-8 shadow-lg rounded-2xl z-0" :class="data.display ? 'z-0 scale-100 animate-blowUp': ''">
-      <div class="flex justify-between">
-        <h2 class="text-xl font-semibold text-black-primary"> {{ data.formInfo.id != undefined ? 'Tahrirlash' : 'Yangi teg qo‘shish' }}</h2>
-        <i @click="reset(data.formInfo); data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
-      </div>
-      <form action="" @submit.prevent="submit" class="w-102">
-        <div class="flex flex-col mt-12 mb-8">
-          <p class="my-3 text-red-primary" v-if="data.error">Bunday teg nomi mavjud!</p>
-          <select name="lang" id="lang" v-model="data.formInfo.lang" required>
-            <option :value="''" disabled selected>Til</option>
-            <option value="uz" @click="title.name = 'Nomi'">O'zbek tili</option>
-            <option value="eng" @click="title.name = 'Name' ">English</option>
-          </select>
-          <div class="flex flex-col">
-          <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.name" class="mt-3.5 input" :placeholder="title.name" required>
-          </div>
+        <div class="flex justify-between">
+          <h2 class="text-xl font-semibold text-black-primary"> {{ data.formInfo.id != undefined ? 'Tahrirlash' : 'Yangi teg qo‘shish' }}</h2>
+          <i @click="reset(data.formInfo); data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
         </div>
-        <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
-      </form>
+        <form action="" @submit.prevent="submit" class="w-102">
+          <div class="flex flex-col mt-12 mb-8">
+            <p class="my-3 text-red-primary" v-if="data.error">Bunday teg nomi mavjud!</p>
+            <select name="lang" id="lang" v-model="data.formInfo.lang" required>
+              <option :value="''" disabled selected>Til</option>
+              <option value="uz" @click="title.name = 'Nomi'">O'zbek tili</option>
+              <option value="eng" @click="title.name = 'Name' ">English</option>
+            </select>
+            <div class="flex flex-col">
+              <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.name" class="mt-3.5 input" :placeholder="title.name" required>
+            </div>
+          </div>
+          <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
+        </form>
+      </div>
     </div>
-    </div>
-    </Modal>
+  </Modal>
 </template>
