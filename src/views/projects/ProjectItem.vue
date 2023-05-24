@@ -95,7 +95,7 @@ const props = defineProps({
     </div>
     <div class="flex flex-col">
       <div class="relative">
-        <BaseImage :src="props.image" class="w-100 h-68"/>
+        <BaseImage :src="props.image" class="w-100 h-68 object-cover object-center"/>
       </div>
       <div class="p-3.5">
         <p class="date"><i class="ri-time-line mr-2 text-base"></i>{{date(Number(props.date))}}</p>

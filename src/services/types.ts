@@ -9,7 +9,7 @@ export interface Category {
 }
 
 export interface Author {
-  id?: number,
+  id: number,
   username?: string,
   password?: string,
   token?: string,

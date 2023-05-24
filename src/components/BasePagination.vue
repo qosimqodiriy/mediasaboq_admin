@@ -52,7 +52,7 @@ const emit = defineEmits(["change"]);
       <button v-if="data.active > 3 && pages.length > 4"  class="w-11 h-11 rounded mr-2.5 bg-white-primary text-black-primary" @click="data.page = data.page - 2; toggleActive(data.page)">
         ...
       </button>
-      <button v-if="data.active === 2 && pages.length > 4" class="w-11 h-11 rounded mr-2.5"  @click="data.page = 3; toggleActive(3)">
+      <button v-if="data.active === 2 && pages.length > 4" class="w-11 h-11 rounded mr-2.5 bg-white-primary text-black-primary"  @click="data.page = 3; toggleActive(3)">
         3
       </button>
       <button v-if="data.active > 2 && data.active !== pages.slice(-1)[0] && data.active !== pages.slice(-2)[0]" class="w-11 h-11 rounded mr-2.5 bg-white-primary text-black-primary" @click="toggleActive(data.active - 1); data.page= data.page - 1">

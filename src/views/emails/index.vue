@@ -61,16 +61,25 @@ getItems()
         </div>
       </div>
       <div class="grid lg:grid-cols-2 gap-8">
-        <div>
+        <div class="block lg:hidden">
           <table class="bg-white-primary">
             <thead>
               <th>ID</th>
               <th>Email</th>
             </thead>
-            <tbody class="block lg:hidden">
+            <tbody>
               <email-item v-for="item in items.list" :id="Number(item.id)" :key="item.id" :url="item.url"/>
             </tbody>
-            <tbody class="hidden lg:block">
+          </table>
+        </div>
+
+        <div class="hidden lg:block">
+          <table class="bg-white-primary">
+            <thead>
+              <th>ID</th>
+              <th>Email</th>
+            </thead>
+            <tbody>
               <email-item v-for="item in items.list.slice(0, 5)" :id="Number(item.id)" :key="item.id" :url="item.url"/>
             </tbody>
           </table>

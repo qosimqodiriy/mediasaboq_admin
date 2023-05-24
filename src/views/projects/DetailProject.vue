@@ -222,7 +222,7 @@ function removeSuggest(id: number) {
           <div>
             <the-select @select="addSuggest" :url="'articles'" :title="'O`shash maqola'" />
             <div class="grid md:grid-cols-2 gap-2 mt-3.5">
-              <div v-for="item in data.formInfo.suggests" :key="item.id" class="relative">
+              <div v-for="item in data.formInfo.suggests" :key="item.id" class="relative bg-orange-primary">
                 <p class="px-2 py-1 rounded border border-gray-secondary bg-white-secondary">{{ item.title }}</p>
                 <img class="w-4 h-4 absolute top-2 right-2 cursor-pointer z-0" @click="removeSuggest(item.id)" src="@/assets/images/close-black.png" alt="">
               </div>

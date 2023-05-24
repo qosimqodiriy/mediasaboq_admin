@@ -62,7 +62,7 @@ function handleSubmit() {
     <div class="mp4">
       <video autoplay loop muted src="@/assets/videos/background.mp4"></video>
     </div>
-    <div class="bg-white-primary p-8 rounded-2xl w-99">
+    <div class="bg-white-primary p-8 rounded-2xl w-99 z-50">
       <form action="" method="post" @submit.prevent="handleSubmit">
         <div class="flex flex-col">
           <h2 class="font-vibes text-3xl text-green-primary">media<span class="text-orange-primary">saboq</span></h2>

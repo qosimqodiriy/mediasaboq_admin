@@ -37,6 +37,8 @@ async function getItems() {
   const { lang = 'uz', offset = 0 } = route.query
   OPEN_LOADING_MODAL()
   const [error, response] = await getTags(String(lang), searchInput.value, Number(offset))
+  console.log(response.list);
+  
   CLOSE_LOADING_MODAL()
   if (response.list) {
     items.value.list = response.list

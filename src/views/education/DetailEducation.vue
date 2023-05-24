@@ -73,6 +73,8 @@ async function assign() {
 assign();
 
 async function submit() {
+  console.log("TAlim submit bosildi");
+  
   const image = await imageRef.value.getImage()
   postPutMedia(data.formInfo, image).then((res) => {
     if (data.formInfo.id && res[1] !== null) {
@@ -139,8 +141,8 @@ function removeSuggest(id: number) {
 
 <template>
   <div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
-    <div class="flex h-28 items-center" @click="router.go(-1)" role="button">
-      <div class="bg-white-primary flex items-center rounded-full h-11.5 w-11.5 justify-center">
+    <div class="flex h-28 items-center">
+      <div @click="router.go(-1)" role="button" class="bg-white-primary flex items-center rounded-full h-11.5 w-11.5 justify-center">
         <i class="ri-arrow-left-line text-black-primary text-xl"></i>
       </div>
       <p class="font-bold text-black-primary text-2xl leading-8 mx-3.5">Ta'lim</p>
@@ -237,7 +239,7 @@ function removeSuggest(id: number) {
           </div>
         </div>
       </div>
-      <button class="px-8 py-3.5 mr-3.5 bg-red-secondary text-red-primary rounded" v-if="data.formInfo.id !== undefined"  @click="OPEN_DELETE_MODAL({ id: Number(data.formInfo.id), text: 'Diqqat, ta`lim blogni o‘chirishga aminmisiz?', title: `${data.formInfo.title}`, url: 'article' })">O'chirish</button>
+      <!-- <button class="px-8 py-3.5 mr-3.5 bg-red-secondary text-red-primary rounded" v-if="data.formInfo.id !== undefined"  @click="OPEN_DELETE_MODAL({ id: Number(data.formInfo.id), text: 'Diqqat, ta`lim blogni o‘chirishga aminmisiz?', title: `${data.formInfo.title}`, url: 'article' })">O'chirish</button> -->
       <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' :  'Qo‘shish'}}</button>
     </form>
   </div>

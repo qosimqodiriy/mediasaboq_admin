@@ -36,7 +36,7 @@ defineExpose({
         <i @click="data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
       </div>
       <form action="" @submit.prevent="submit" class="w-102">
-        <div class="flex flex-col mb-8">
+        <div class="flex flex-col mb-8 mt-8">
           <div class="flex flex-col gap-5">
             <textarea v-model="data.footer.uz" rows="10" placeholder="O'zbek tilida" required></textarea>
             <textarea v-model="data.footer.eng" rows="10" placeholder="In English" required></textarea>

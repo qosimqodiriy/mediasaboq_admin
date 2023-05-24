@@ -55,7 +55,7 @@ defineExpose({
           <i @click="reset(data.formInfo); data.display = false" class="cursor-pointer ri-close-line text-black-primary text-xl" />
         </div>
         <form action="" @submit.prevent="submit" class="w-102">
-          <div class="flex flex-col mt-12 mb-8">
+          <div class="flex flex-col mt-8 mb-8">
             <p class="my-3 text-red-primary" v-if="data.error">Bunday teg nomi mavjud!</p>
             <select name="lang" id="lang" v-model="data.formInfo.lang" required>
               <option :value="''" disabled selected>Til</option>

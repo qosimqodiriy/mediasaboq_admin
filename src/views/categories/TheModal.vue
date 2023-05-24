@@ -73,7 +73,7 @@ defineExpose({
           <div v-if="data.error" class="text-red-primary mb-3.5">
               {{data.msg}}
           </div>
-          <div class="flex flex-col mt-12 mb-8">
+          <div class="flex flex-col mt-8 mb-8">
             <div class="flex items-end">
               <div class="border border-gray-secondary rounded w-30 h-30 bg-gray-primary">
                 <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError"/>
