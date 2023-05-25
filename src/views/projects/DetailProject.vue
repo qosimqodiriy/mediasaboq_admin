@@ -3,18 +3,18 @@ import router from '@/router'
 import { useRoute } from 'vue-router'
 import { OPEN_DELETE_MODAL } from '@/store';
 import type { Author } from '@/services/types';
-import type { MediaModel } from '@/services/media';
+import type { ProjectModel } from '@/services/project';
 import { inputDate } from '@/services/timeFunctions';
 import { getAuthorsSelect } from '@/services/category';
 import { reactive, ref, defineAsyncComponent } from 'vue';
-import { postPutMedia, resetProject, getMedia } from '@/services/media';
+import { postPutMedia, resetProject, getMedia, postPutProjectMedia } from '@/services/media';
 const route = useRoute()
 const emit = defineEmits(['toast'])
 const imageRef = ref()
 const Editor = defineAsyncComponent(() =>
   import('@/components/TextEditor.vue')
 )
-const data = reactive<{ formInfo: MediaModel, error: boolean, displayAuthors: Author[], msg: string }>({
+const data = reactive<{ formInfo: ProjectModel, error: boolean, displayAuthors: Author[], msg: string }>({
   displayAuthors: [],
   error: false,
   msg: '',
@@ -23,10 +23,10 @@ const data = reactive<{ formInfo: MediaModel, error: boolean, displayAuthors: Au
     slug: '',
     description: '',
     image: '',
+    category: null,
     body: '',
     author: {},
     active: false,
-    deleted: false,
     tags: [],
     suggests: [],
     credit: '',
@@ -34,7 +34,6 @@ const data = reactive<{ formInfo: MediaModel, error: boolean, displayAuthors: Au
     lang: '',
     isTop: false,
     isMain: false,
-    category: {},
     type: 3,
     seoDesc: '',
     seoMeta: '',
@@ -45,6 +44,7 @@ const data = reactive<{ formInfo: MediaModel, error: boolean, displayAuthors: Au
 (function () {
   getAuthorsSelect().then(res => {
     data.displayAuthors = res[1].list
+    data.formInfo.author = res[1].list[0].id
   })
 })();
 
@@ -60,13 +60,15 @@ async function assign() {
     }, 100)
   } else {
     resetProject(data.formInfo)
+    data.formInfo.active = true
   }
 }
 assign();
 
 async function submit() {
+  data.formInfo.category = null;
   const image = await imageRef.value.getImage()
-  postPutMedia(data.formInfo, image).then((res) => {
+  postPutProjectMedia(data.formInfo, image).then((res) => {
     if (data.formInfo.id && res[1] !== null) {
       emit('toast', 'Media blog yangilandi')
       router.go(-1)
@@ -134,16 +136,13 @@ function removeSuggest(id: number) {
 <template>
   <div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
     <div>
-      <div class="flex h-28 items-center">
+      <div class="flex items-center mb-10">
         <div @click="router.go(-1)" role="button" class="bg-white-primary flex items-center rounded-full h-11.5 w-11.5 justify-center">
           <i class="ri-arrow-left-line text-black-primary text-xl"></i>
         </div>
         <p class="font-bold text-black-primary text-2xl leading-8 mx-3.5">Media loyihalar</p>
       </div>
       <form action="" @submit.prevent="submit" class="w-100 bg-white-primary p-8 rounded">
-        <div v-if="data.error" class="text-red-primary mb-3.5">
-          {{ data.msg }}
-        </div>
         <div class="flex items-end">
           <div class="border border-gray-secondary rounded w-30 h-30 bg-gray-primary">
             <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError" />
@@ -171,13 +170,6 @@ function removeSuggest(id: number) {
               </label>
               <p class="px-3.5">Faol</p>
             </div>
-            <div class="flex items-center">
-              <label class="switch ml-3.5">
-                <input type="checkbox" :checked="data.formInfo.deleted" @click="data.formInfo.deleted = !data.formInfo.deleted">
-                <span class="slider round"></span>
-              </label>
-              <p class="px-3.5">Favourite</p>
-            </div>
           </div>
           <div class="relative w-full">
             <input type="date" id="date" v-model="data.formInfo.date" class="input" required>
@@ -196,7 +188,7 @@ function removeSuggest(id: number) {
           <div class="grid grid-cols-3 gap-3.5 mt-3.5">
             <input type="text" v-model="data.formInfo.title" class="input" placeholder="Sarlavha" required>
             <select v-model="data.formInfo.author" required>
-              <option :value="{}" selected disabled>Muallif</option>
+              <!-- <option :value="{}" selected disabled>Muallif</option> -->
               <option v-for="author in data.displayAuthors" :value="author.id" :key="author.id">{{ author.name }}</option>
             </select>
             <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.slug" class="input" placeholder="Slug" required>
@@ -229,6 +221,8 @@ function removeSuggest(id: number) {
             </div>
           </div>
         </div>
+      
+        <div v-if="data.error" class="text-red-primary mb-3.5">{{ data.msg }}</div>
 
         <!-- <button class="px-8 py-3.5 mr-3.5 bg-red-secondary text-red-primary rounded" v-if="data.formInfo.id !== undefined" @click="OPEN_DELETE_MODAL({ id: Number(data.formInfo.id), text: 'Diqqat, media loyihani o‘chirishga aminmisiz?', title: `${data.formInfo.title}`, url: 'article' })">O'chirish</button> -->
         <button class="px-8 py-3.5 bg-orange-primary text-white-primary rounded" type="submit">{{ data.formInfo.id != undefined ? 'O‘zgarishlarni saqlash' : 'Qo‘shish'}}</button>

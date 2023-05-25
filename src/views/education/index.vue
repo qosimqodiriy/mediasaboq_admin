@@ -60,7 +60,7 @@ getItems()
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-        <education-item v-for="item in items.list" :key="item.id" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :isMain="item.isMain" :title="item.title" :description="item.description" :image="item.image" :type="item.type" :author="item.author" :credit="item.credit" :active="item.active" :deleted="item.deleted" :date="Number(item.date)" :category="item.category" :isTop="item.isTop" :body="item.body" :seoTitle="item.seoTitle" :seoMeta="item.seoMeta" :seoDesc="item.seoDesc" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, ta`lim blogni o‘chirishga aminmisiz?', title: `${item.title}`, url: 'article', callback: getItems })"/>
+        <education-item v-for="item in items.list" :key="item.id" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :isMain="item.isMain" :title="item.title" :description="item.description" :image="item.image" :type="item.type" :author="item.author" :credit="item.credit" :active="item.active" :date="Number(item.date)" :category="item.category" :isTop="item.isTop" :body="item.body" :seoTitle="item.seoTitle" :seoMeta="item.seoMeta" :seoDesc="item.seoDesc" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, ta`lim blogni o‘chirishga aminmisiz?', title: `${item.title}`, url: 'article', callback: getItems })"/>
       </div>
       
       <base-pagination v-if="items.count > 6" :active="Math.trunc(Number(route.query.offset)/6) + 1 || 1" :perPage="6" :items="items.count" @change="(val:number) => changeQuery({key: 'offset', value: (val - 1)*6})"/>

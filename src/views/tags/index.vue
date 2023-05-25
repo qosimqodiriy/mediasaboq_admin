@@ -78,7 +78,7 @@ getItems()
               <th>Amal</th>
             </thead>
             <tbody >
-              <category-item v-for="item in items.list" :id="Number(item.id)" :lang="item.lang" :articleCount="Number(item.articleCount)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
+              <category-item v-for="item in items.list" :id="Number(item.id)" :lang="item.lang" :countArticle="Number(item.countArticle)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
             </tbody>
           </table>
         </div>
@@ -90,7 +90,7 @@ getItems()
               <th>Amal</th>
             </thead>
             <tbody >
-              <category-item v-for="item in items.list.slice(0, 5)" :id="Number(item.id)" :lang="item.lang" :articleCount="Number(item.articleCount)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
+              <category-item v-for="item in items.list.slice(0, 5)" :id="Number(item.id)" :lang="item.lang" :countArticle="Number(item.countArticle)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
             </tbody>
           </table>
         </div>
@@ -102,7 +102,7 @@ getItems()
               <th>Amal</th>
             </thead>
             <tbody>
-              <category-item v-for="item in items.list.slice(5, 10)" :id="Number(item.id)" :lang="item.lang" :articleCount="Number(item.articleCount)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
+              <category-item v-for="item in items.list.slice(5, 10)" :id="Number(item.id)" :lang="item.lang" :countArticle="Number(item.countArticle)" :name="item.name"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, tegni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'tag', callback: getItems })"/>
             </tbody>
           </table>
         </div>

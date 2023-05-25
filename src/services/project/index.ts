@@ -1,6 +1,7 @@
-import type { Category, Author } from "../types";
+import type { Category } from "../categories";
+import type { Author } from "../types";
 
-export interface MediaModel {
+export interface ProjectModel {
   id?: number,
   date: number | null | string,
   type: number,
@@ -9,7 +10,7 @@ export interface MediaModel {
   description: string,
   body: string,
   image: string,
-  category: Category,
+  category: Category | null,
   tags: any[],
   suggests: any[],
   isTop: boolean,

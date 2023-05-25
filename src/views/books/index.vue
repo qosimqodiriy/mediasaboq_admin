@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { defineAsyncComponent, ref } from 'vue'
-import type { BookModel } from '@/services/books'
 import { getBooks } from '@/services/books'
+import { defineAsyncComponent, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { _deleteModal, _loading, _toast, OPEN_DELETE_MODAL, OPEN_LOADING_MODAL, CLOSE_LOADING_MODAL, OPEN_NOTIFICATION } from '@/store'
+import type { BookModel } from '@/services/books'
+import { OPEN_DELETE_MODAL, OPEN_LOADING_MODAL, CLOSE_LOADING_MODAL, OPEN_NOTIFICATION } from '@/store'
+
 const route = useRoute()
 const router = useRouter()
-const BookItem = defineAsyncComponent(() =>
-  import('./BookItem.vue')
-);
+const searchInput = ref('')
+const BookItem = defineAsyncComponent(() => import('./BookItem.vue'));
+
 const items = ref<{ isLoading: boolean, count: number, list: BookModel[] }>({
   isLoading: false,
   count: 0,
@@ -23,7 +24,7 @@ async function changeQuery(param: { key: string, value: number | string }) {
   await router.replace({ query })
   getItems()
 }
-const searchInput = ref('')
+
 async function getItems() {
   const { offset = 0, lang = 'uz' } = route.query
   OPEN_LOADING_MODAL()
@@ -57,7 +58,8 @@ getItems()
           </router-link>
         </div>
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3.5">
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
         <book-item v-for="item in items.list" :key="item.id" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :name="item.name" :title="item.title" :description="item.description" :image="item.image" :url="item.url" :bookAuthor="item.bookAuthor" :category="item.category" :isActive="item.isActive" :isDeleted="item.isDeleted" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, kitobni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'book', callback: getItems })"/>
       </div>
 

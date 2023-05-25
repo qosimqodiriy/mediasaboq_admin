@@ -57,7 +57,7 @@ getItems()
         </div>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-        <media-item v-for="item in items.list" :key="item.id" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :isMain="item.isMain" :title="item.title" :description="item.description" :image="item.image" :type="item.type" :author="item.author" :credit="item.credit" :active="item.active" :deleted="item.deleted" :date="Number(item.date)" :category="item.category" :isTop="item.isTop" :body="item.body" :seoTitle="item.seoTitle" :seoMeta="item.seoMeta" :seoDesc="item.seoDesc" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, media blogni o‘chirishga aminmisiz?', title: `${item.title}`, url: 'article', callback: getItems })"/>
+        <media-item v-for="item in items.list" :key="item.id" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :isMain="item.isMain" :title="item.title" :description="item.description" :image="item.image" :type="item.type" :author="item.author" :credit="item.credit" :active="item.active" :date="Number(item.date)" :category="item.category" :isTop="item.isTop" :body="item.body" :seoTitle="item.seoTitle" :seoMeta="item.seoMeta" :seoDesc="item.seoDesc" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, media blogni o‘chirishga aminmisiz?', title: `${item.title}`, url: 'article', callback: getItems })"/>
       </div>
 
 

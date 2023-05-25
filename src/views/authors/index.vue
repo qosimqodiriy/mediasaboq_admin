@@ -14,10 +14,12 @@ const searchInput = ref('')
 const TheModal = defineAsyncComponent( () => import('./TheModal.vue') );
 const AuthorItem = defineAsyncComponent( () => import('./AuthorItem.vue') );
 
+const activeTrue = ref<{list: AuthorModel[]}>({ list: [] });
+const activeFalse = ref<{list: AuthorModel[]}>({ list: [] });
 const items = ref<{isLoading: boolean, count: number, list: AuthorModel[]}>({
   isLoading: false,
   count: 0,
-  list: []
+  list: [],
 })
 
 
@@ -37,6 +39,18 @@ async function getItems() {
   const { offset = 0 } = route.query
   OPEN_LOADING_MODAL()
   const [error, response] = await getAuthors(searchInput.value, Number(offset))
+  console.log(response);
+
+  if(response && response.list) {
+    response.list.forEach( (item: AuthorModel) => {
+      if(item.isActive == true) {
+        activeTrue.value.list.push(item)
+      } else if(item.isActive == false) {
+        activeFalse.value.list.push(item)
+      }
+    });
+  }
+  
   CLOSE_LOADING_MODAL()
   items.value.list = response.list
   items.value.count = response.count
@@ -64,7 +78,7 @@ getItems()
         </div>
       </div>
       <div class="grid xl:grid-cols-2 gap-8 pb-12">
-        <div>
+        <div v-if="activeTrue.list.length > 0">
           <p class="text-orange-primary text-lg font-bold pb-2">Active: <span class="font-semibold text-black-primary">true</span></p>
           <table class="bg-white-primary">
             <thead>
@@ -73,22 +87,22 @@ getItems()
               <th>Foydalanuvchi nomi</th>
               <th>Amal</th>
             </thead>
-            <tbody v-for="item in items.list.slice(0, items.count)" :key="item.id">
+            <tbody v-for="item in activeTrue.list" :key="item.id">
               <author-item v-if="item.isActive == true" :id="Number(item.id)" :username="item.username" :token="item.token" :uuid="item.uuid" :password="item.password" :name="item.name" :isActive="item.isActive" :image="item.image" :description="item.description" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, muallifni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'author', callback: getItems })"/>
             </tbody>
           </table>
         </div>
 
-        <div>
+        <div v-if="activeFalse.list.length > 0">
           <p class="text-orange-primary text-lg font-bold pb-2">Active: <span class="font-semibold text-black-primary">false</span></p>
-          <table class="bg-white-primary" v-if="items.list.length > 5">
+          <table class="bg-white-primary">
             <thead>
               <th>ID</th>
               <th>Ismi sharifi</th>
               <th>Foydalanuvchi nomi</th>
               <th>Amal</th>
             </thead>
-            <tbody v-for="item in items.list.slice(0, items.count)" :key="item.id">
+            <tbody v-for="item in activeFalse.list" :key="item.id">
               <author-item v-if="item.isActive == false" :id="Number(item.id)" :username="item.username" :token="item.token" :uuid="item.uuid" :password="item.password" :name="item.name" :isActive="item.isActive" :image="item.image" :description="item.description" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, muallifni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'author', callback: getItems })"/>
             </tbody>
           </table>

@@ -38,17 +38,20 @@ const data = reactive<{ formInfo: BookModel, error: boolean, displayCategory: {i
 })()
 
 async function assign() {
-  const item = JSON.parse(String(route.query.item))
+  let item: any; 
+  if(route.query.item) {
+    item = JSON.parse(String(route.query.item))
+  }
   if (item != undefined) {
     Object.assign(data.formInfo, item)
     setTimeout(() => {
-    imageRef.value.setImage(item.image)
-  }, 100)
+      imageRef.value.setImage(item.image)
+    }, 100)
   } else {
     reset(data.formInfo)
+    data.formInfo.isActive = true;
   }
 }
-assign();
 
 async function submit() {
   const image = await imageRef.value.getImage()
@@ -77,12 +80,16 @@ function showError() {
   }, 3000);
 }
 
+
+assign();
 </script>
+
+
 <template>
   <div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
     <div>
-      <div class="flex h-28 items-center" @click="router.go(-1)" role="button">
-        <div class="bg-white-primary flex items-center rounded-full h-11.5 w-11.5 justify-center">
+      <div class="flex items-center mb-10">
+        <div @click="router.go(-1)" role="button" class="bg-white-primary flex items-center rounded-full h-11.5 w-11.5 justify-center">
           <i class="ri-arrow-left-line text-black-primary text-xl"></i>
         </div>
         <p class="font-bold text-black-primary text-2xl leading-8 mx-3.5">Kutubxona</p>
@@ -95,10 +102,13 @@ function showError() {
           <div class="border border-gray-secondary rounded w-30 h-30 bg-gray-primary">
             <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError"/>
           </div>
-          <label class="switch ml-3.5">
-            <input type="checkbox" :checked="data.formInfo.isActive" @click="data.formInfo.isActive = !data.formInfo.isActive">
-            <span class="slider round"></span>
-          </label>
+          <div class="flex items-center gap-3 ml-5">
+            <span class="">Active: </span>
+            <label class="switch">
+              <input type="checkbox" :checked="data.formInfo.isActive" @click="data.formInfo.isActive = !data.formInfo.isActive">
+              <span class="slider round"></span>
+            </label>
+          </div>
         </div>
         <div class="flex flex-col my-3.5">
           <div class="grid grid-cols-2 gap-3.5">

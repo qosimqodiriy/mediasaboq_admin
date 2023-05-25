@@ -1,88 +1,32 @@
 <script setup lang="ts">
-import { date } from '@/services/timeFunctions'
 import { ref } from 'vue';
+import { date } from '@/services/timeFunctions'
 import BaseImage from '../../components/BaseImage.vue';
+
 const emit = defineEmits(["remove", "edit"])
 const iconActive = ref(false);
 const props = defineProps({
-  id: {
-    type: Number,
-    required: true
-  },
-  type: {
-    type: Number,
-    required: true
-  },
-  lang: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  body: {
-    type: String,
-    required:true
-  },
-  slug: {
-    type: String,
-    required: true
-  },
-  image: {
-    type: String,
-    required: true
-  },
-  seoMeta: {
-    type: String,
-    required: true
-  },
-  author: {
-    type: Object,
-    required: true
-  },
-  category: {
-    type: Object,
-    required: true
-  },
-  isTop: {
-    type: Boolean,
-    required: true
-  },
-  isMain: {
-    type: Boolean,
-    required: true
-  },
-  seoTitle: {
-    type: String,
-    required: true
-  },
-  seoDesc: {
-    type: String,
-    required: true
-  },
-  date: {
-    type: Number,
-    required: true
-  },
-  active: {
-    type: Boolean,
-    required: true
-  },
-  deleted: {
-    type: Boolean,
-    required: true
-  },
-  credit: {
-    type: String,
-    required: true
-  }
+  id: { type: Number, required: true },
+  type: { type: Number, required: true },
+  lang: { type: String, required: true },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  body: { type: String, required:true },
+  slug: { type: String, required: true },
+  image: { type: String, required: true },
+  seoMeta: { type: String, required: true },
+  author: { type: Object, required: true },
+  category: { type: Object, required: true },
+  isTop: { type: Boolean, required: true },
+  isMain: { type: Boolean, required: true },
+  seoTitle: { type: String, required: true },
+  seoDesc: { type: String, required: true },
+  date: { type: Number, required: true },
+  active: { type: Boolean, required: true },
+  credit: { type: String, required: true  }
 })
 </script>
+
 <template>
   <div class="bg-white-primary border-2 border-black-primary relative m-0" @mouseenter="iconActive = !iconActive" @mouseleave="iconActive = !iconActive">
     <div class="flex absolute top-3.5 right-3.5 z-10" v-if="iconActive">

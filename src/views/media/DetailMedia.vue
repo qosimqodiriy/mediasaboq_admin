@@ -27,7 +27,6 @@ const data = reactive<{ formInfo: MediaModel, error: boolean, displayCategory: {
     body: '',
     author: {},
     active: false,
-    deleted: false,
     tags: [],
     suggests: [],
     credit: '',
@@ -46,12 +45,14 @@ const data = reactive<{ formInfo: MediaModel, error: boolean, displayCategory: {
 (function () {
   getCategory(1).then(res => {
     data.displayCategory = res[1].list
+    data.formInfo.category = res[1].list[0].id
   })
 })();
 
 (function () {
   getAuthorsSelect().then(res => {
     data.displayAuthors = res[1].list
+    data.formInfo.author = res[1].list[0].id
   })
 })();
 
@@ -68,13 +69,16 @@ async function assign() {
     }, 100)
   } else {
     resetMedia(data.formInfo)
+    data.formInfo.active = true
   }
 }
 assign();
 
 async function submit() {
   const image = await imageRef.value.getImage()
-  postPutMedia(data.formInfo, image).then((res) => {
+  postPutMedia(data.formInfo, image).then((res: any) => {
+    console.log(res);
+    
     if (data.formInfo.id && res[1] !== null) {
       emit('toast', 'Media blog yangilandi')
       router.go(-1)
@@ -140,16 +144,13 @@ function removeSuggest(id: number) {
 <template>
   <div class="main bg-gray-primary px-20 right-0 fixed top-0 bottom-0 overflow-y-scroll">
     <div>
-      <div class="flex h-28 items-center">
+      <div class="flex items-center mb-10">
         <div @click="router.go(-1)" role="button" class="bg-white-primary flex items-center rounded-full h-11.5 w-11.5 justify-center">
           <i class="ri-arrow-left-line text-black-primary text-xl"></i>
         </div>
         <p class="font-bold text-black-primary text-2xl leading-8 mx-3.5">Media blog</p>
       </div>
       <form action="" @submit.prevent="submit" class="w-100 bg-white-primary p-8 rounded">
-        <div v-if="data.error" class="text-red-primary mb-3.5">
-          {{ data.msg }}
-        </div>
         <div class="flex items-end">
           <div class="border border-gray-secondary rounded w-30 h-30 bg-gray-primary">
             <image-box ref="imageRef" class="rounded w-30 h-30" @invalid-input="showError" />
@@ -176,13 +177,6 @@ function removeSuggest(id: number) {
               </label>
               <p class="px-3.5">Faol</p>
             </div>
-            <div class="flex items-center">
-              <label class="switch ml-3.5">
-                <input type="checkbox" :checked="data.formInfo.deleted" @click="data.formInfo.deleted = !data.formInfo.deleted">
-                <span class="slider round"></span>
-              </label>
-              <p class="px-3.5">Favourite</p>
-            </div>
           </div>
           <div class="relative w-full">
             <input type="date" id="date" v-model="data.formInfo.date" class="input" required>
@@ -198,14 +192,14 @@ function removeSuggest(id: number) {
             </select>
             <input type="text" v-model="data.formInfo.credit" class="input" placeholder="Surat olingan joy">
             <select v-model="data.formInfo.category" required>
-              <option :value="{}" selected disabled>Turkum</option>
+              <!-- <option :value="{}" selected disabled>Turkum</option> -->
               <option v-for="c in data.displayCategory" :value="c.id" :key="c.id">{{ c.name }}</option>
             </select>
           </div>
           <div class="grid grid-cols-3 gap-3.5 mt-3.5">
             <input type="text" v-model="data.formInfo.title" class="input" placeholder="Sarlavha" required>
             <select v-model="data.formInfo.author" required>
-              <option :value="{}" selected disabled>Muallif</option>
+              <!-- <option :value="{}" selected disabled>Muallif</option> -->
               <option v-for="author in data.displayAuthors" :value="author.id" :key="author.id">{{ author.name }}</option>
             </select>
             <input type="text" pattern="[A-Za-z0-9_-]+" v-model="data.formInfo.slug" class="input" placeholder="Slug" required>
@@ -239,6 +233,8 @@ function removeSuggest(id: number) {
             </div>
           </div>
         </div>
+
+        <div v-if="data.error" class="text-red-primary mt-3.5">{{ data.msg }}</div>
 
         <div class="flex mt-3.5">
           <!-- <div class="px-8 w-32 py-3.5 mr-3.5 bg-red-secondary text-red-primary rounded" v-if="data.formInfo.id !== undefined" role="button" @click="OPEN_DELETE_MODAL({ id: Number(data.formInfo.id), text: 'Diqqat, media blogni o‘chirishga aminmisiz?', title: `${data.formInfo.title}`, url: 'article' })"> O'chirish</div> -->

@@ -15,7 +15,7 @@ const props = defineProps({
     type: String,
     required: true
   },
-  articleCount: {
+  countArticle: {
     type: Number,
     required: true
   }
@@ -25,7 +25,7 @@ const props = defineProps({
 <template>
   <tr class="rounded m-0" v-if="props.name !== undefined">
       <td class="text-black-primary lines font-semibold">{{props.name}}</td>
-      <td class="text-sm text-black-secondary">{{props.articleCount? props.articleCount : 0}}</td>
+      <td class="text-sm text-black-secondary">{{props.countArticle? props.countArticle : 0}}</td>
       <td class="flex">
         <div @click="emit('edit', props)" role="button" class="bg-yellow-secondary w-11 h-11 flex justify-center items-center rounded-full" >
           <i class="ri-pencil-line text-xl text-yellow-primary"></i>

@@ -61,6 +61,7 @@ defineExpose({
   open
 })
 </script>
+
 <template>
   <Modal v-if="data.display">
     <div class="h-screen flex items-center">

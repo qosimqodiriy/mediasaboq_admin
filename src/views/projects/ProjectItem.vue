@@ -47,7 +47,7 @@ const props = defineProps({
   },
   category: {
     type: Object,
-    required: true
+    required: false
   },
   isTop: {
     type: Boolean,
@@ -70,10 +70,6 @@ const props = defineProps({
     required: true
   },
   active: {
-    type: Boolean,
-    required: true
-  },
-  deleted: {
     type: Boolean,
     required: true
   },

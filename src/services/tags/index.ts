@@ -11,5 +11,5 @@ export function reset(obj: TagModel) {
   obj.id = undefined,
   obj.name = "",
   obj.lang = "",
-  obj.articleCount = 0
+  obj.countArticle = 0
 }

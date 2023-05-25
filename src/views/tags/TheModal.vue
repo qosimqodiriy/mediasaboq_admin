@@ -9,8 +9,10 @@ const data = reactive<{ error: boolean, display: boolean, formInfo: TagModel }>(
   error: false,
   display: false,
   formInfo: {
+    id: 0,
     name: '',
     lang: '',
+    countArticle: 0,
   }
 });
 

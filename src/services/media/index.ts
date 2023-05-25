@@ -1,3 +1,4 @@
+import type { ProjectModel } from '../project'
 import type { MediaModel } from './entity'
 export * from './api'
 export * from './entity'
@@ -14,7 +15,6 @@ export function resetMedia(form: MediaModel) {
   form.isMain = false,
   form.author = {},
   form.active = false,
-  form.deleted = false,
   form.date = null,
   form.credit = '',
   form.slug = '',
@@ -35,7 +35,6 @@ export function resetEducation(form: MediaModel) {
   form.isMain = false,
   form.author = {},
   form.active = false,
-  form.deleted = false,
   form.date = null,
   form.credit = '',
   form.slug = '',
@@ -44,19 +43,18 @@ export function resetEducation(form: MediaModel) {
   form.seoDesc = ''
 }
 
-export function resetProject(form: MediaModel) {
+export function resetProject(form: ProjectModel) {
   form.type = 3
   form.title = ''
   form.lang = ''
   form.description = ''
   form.body = ''
   form.image = ''
-  form.category = {},
+  form.category = null,
   form.isTop = false,
   form.isMain = false,
   form.author = {},
   form.active = false,
-  form.deleted = false,
   form.date = null,
   form.credit = '',
   form.slug = '',

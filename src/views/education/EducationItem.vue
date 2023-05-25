@@ -73,10 +73,6 @@ const props = defineProps({
     type: Boolean,
     required: true
   },
-  deleted: {
-    type: Boolean,
-    required: true
-  },
   credit: {
     type: String,
     required: true
