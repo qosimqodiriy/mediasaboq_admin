@@ -215,7 +215,7 @@ assign();
         </div>
         <textarea rows="5" class="mt-3.5" cols="10" placeholder="Qo'shimcha" v-model="data.formInfo.description"/>
       </div>
-      <div class="grid grid-cols-2 gap-3.5 mb-3.5">
+      <div class="grid lg:grid-cols-2 gap-3.5 mb-3.5">
         <div>
           <base-selection @select="addTag" :url="'tags'" :title="'Teg'" :lang="data.formInfo.lang"/>
           <div class="grid md:grid-cols-2 gap-2 mt-3.5">
@@ -227,7 +227,7 @@ assign();
         </div>
         <div>
           <the-select @select="addSuggest" :url="'articles'" :title="'O`shash maqola'" />
-          <div class="grid md:grid-cols-2 gap-2 mt-3.5">
+          <div class="grid grid-cols-1 gap-2 mt-3.5">
             <div v-for="item in data.formInfo.suggests" :key="item.id" class="relative">
               <p class="px-2 py-1 rounded border border-gray-secondary bg-white-secondary">{{ item.title }}</p>
               <img class="w-4 h-4 absolute top-2 right-2 cursor-pointer z-0" @click="removeSuggest(item.id)" src="@/assets/images/close-black.png" alt="">
