@@ -52,6 +52,8 @@ async function assign() {
   const id = route.query.item
   if (id != undefined) {
     const [error, item] = await getMedia(Number(id))
+    console.log(item);
+    
     Object.assign(data.formInfo, item)
     data.formInfo.date = inputDate(item.date)
     data.formInfo.author = item.author.id

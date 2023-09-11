@@ -99,6 +99,7 @@ const props = defineProps({
         <p class="text-sm text-black-secondary lines">{{props.description}}</p>
       </div>
     </div>
+      <p v-if="!props.active" class="w-8 h-8 bg-orange-primary absolute right-0 bottom-0 rounded-tl-3xl"></p>
   </div>
 </template>
 <style scoped>

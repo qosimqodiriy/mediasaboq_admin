@@ -53,7 +53,7 @@ getItems()
         </div>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
         <social-item v-for="item in items.list" :id="item.id" :icon="item.icon" :url="item.url" :priority="item.priority"   :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: item.id, text: 'Diqqat, ijtimoiy tarmoqni o‘chirishga aminmisiz?', title: `${item.url}`, url: 'social', callback: getItems })"/>
       </div>
 

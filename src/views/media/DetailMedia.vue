@@ -60,6 +60,7 @@ async function assign() {
   const id = route.query.item
   if (id != undefined) {
     const [error, item] = await getMedia(Number(id))
+    console.log(item);
     Object.assign(data.formInfo, item)
     data.formInfo.date = inputDate(item.date)
     data.formInfo.category = item.category.id
@@ -67,6 +68,7 @@ async function assign() {
     setTimeout(() => {
       imageRef.value.setImage(item.image)
     }, 100)
+    console.log(data.formInfo);
   } else {
     resetMedia(data.formInfo)
     data.formInfo.active = true
@@ -76,6 +78,7 @@ assign();
 
 async function submit() {
   const image = await imageRef.value.getImage()
+
   postPutMedia(data.formInfo, image).then((res: any) => {
     console.log(res);
     
@@ -96,10 +99,13 @@ async function submit() {
 }
 
 function showError() {
+  console.log("error");
+  
   data.msg = "Iltimos, blog suratini joylang!"
   data.error = true
   setTimeout(() => {
-    data.error = false
+    data.msg = ''
+    data.error = false;
   }, 3000);
 }
 

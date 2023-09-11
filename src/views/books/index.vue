@@ -59,7 +59,7 @@ getItems()
         </div>
       </div>
       
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3.5">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-3.5">
         <book-item v-for="item in items.list" :key="item.id" :id="Number(item.id)" :lang="item.lang" :slug="item.slug" :name="item.name" :title="item.title" :description="item.description" :image="item.image" :url="item.url" :bookAuthor="item.bookAuthor" :category="item.category" :isActive="item.isActive" :isDeleted="item.isDeleted" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, kitobni o‘chirishga aminmisiz?', title: `${item.name}`, url: 'book', callback: getItems })"/>
       </div>
 

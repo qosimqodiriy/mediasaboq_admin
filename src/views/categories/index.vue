@@ -76,7 +76,7 @@ getItems()
         </div>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
         <category-item v-for="item in items.list" :id="Number(item.id)" :lang="item.lang" :articleCount="item.articleCount" :name="item.name" :type="item.type" :image="item.image" :slug="item.slug" :key="item.id" @edit="openModal" @remove="OPEN_DELETE_MODAL({ id: Number(item.id), text: 'Diqqat, kategoriyani o‘chirishga aminmisiz?', title: `${item.name}`, url: 'category', callback: getItems })"/>
       </div>
 

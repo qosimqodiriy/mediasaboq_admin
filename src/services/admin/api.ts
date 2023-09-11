@@ -1,5 +1,6 @@
 import type { AdminModel } from "./entity"
 import { axiosInstance } from "../axios";
+
 export async function putAdmin(admin: AdminModel) {
   try {
     const response = await axiosInstance({
