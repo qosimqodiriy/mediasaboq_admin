@@ -40,8 +40,6 @@ function open(item: AuthorModel) {
 async function submit() {
   const image = await imageRef.value.getImage()
   postPutAuthor(data.formInfo, image).then((res: any) => {
-    console.log(res);
-    
     if(data.formInfo.id && res[1] !== null) {
       emit('toast', 'Muallif yangilandi')
       data.display = false

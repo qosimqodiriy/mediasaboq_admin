@@ -39,8 +39,6 @@ async function getItems() {
   const { offset = 0 } = route.query
   OPEN_LOADING_MODAL()
   const [error, response] = await getAuthors(searchInput.value, Number(offset))
-  console.log(response);
-
   if(response && response.list) {
     response.list.forEach( (item: AuthorModel) => {
       if(item.isActive == true) {

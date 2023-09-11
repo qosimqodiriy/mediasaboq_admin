@@ -27,7 +27,6 @@ async function getItems() {
   const { offset = 0, lang = 'uz' } = route.query
   OPEN_LOADING_MODAL()
   const [error, response] = await getMedias(searchInput.value, Number(offset), 1, String(lang))
-  console.log(response.list);
   CLOSE_LOADING_MODAL()
   items.value.count = response.count
   items.value.list = response.list

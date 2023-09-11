@@ -58,17 +58,17 @@ const data = reactive<{ formInfo: MediaModel, error: boolean, displayCategory: {
 
 async function assign() {
   const id = route.query.item
+  
   if (id != undefined) {
     const [error, item] = await getMedia(Number(id))
-    console.log(item);
     Object.assign(data.formInfo, item)
     data.formInfo.date = inputDate(item.date)
     data.formInfo.category = item.category.id
     data.formInfo.author = item.author.id
+    
     setTimeout(() => {
       imageRef.value.setImage(item.image)
     }, 100)
-    console.log(data.formInfo);
   } else {
     resetMedia(data.formInfo)
     data.formInfo.active = true
@@ -80,8 +80,6 @@ async function submit() {
   const image = await imageRef.value.getImage()
 
   postPutMedia(data.formInfo, image).then((res: any) => {
-    console.log(res);
-    
     if (data.formInfo.id && res[1] !== null) {
       emit('toast', 'Media blog yangilandi')
       router.go(-1)

@@ -64,8 +64,6 @@ async function assign() {
     data.formInfo.date = inputDate(item.date)
     data.formInfo.category = item.category.id
     data.formInfo.author = item.author.id
-
-    console.log(item);
     
     setTimeout(() => {
       imageRef.value.setImage(item.image)
